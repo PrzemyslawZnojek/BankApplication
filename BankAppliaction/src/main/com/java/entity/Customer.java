@@ -6,6 +6,14 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 	private String country;
+	
+	public Customer(long customerID, String firstName, String lastName, String country) {
+		this.customerID = customerID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.country = country;
+	}
+	
 	public long getCustomerID() {
 		return customerID;
 	}
