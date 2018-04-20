@@ -6,7 +6,13 @@ public class Account {
 	private long customerID;
 	private long balance;
 	private String accountNumber;
-	
+
+	public Account(long accountID, long customerID, long balance, String accountNumber) {
+		this.accountID = accountID;
+		this.customerID = customerID;
+		this.balance = balance;
+		this.accountNumber = accountNumber;
+	}
 
 	public long getAccountID() {
 		return accountID;
