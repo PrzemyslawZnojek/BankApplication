@@ -31,7 +31,7 @@
 	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bankapplication?useSSL=false" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bank_application?useSSL=false" />
         <property name="user" value="admin" />
         <property name="password" value="admin" /> 
 
