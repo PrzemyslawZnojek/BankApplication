@@ -1,10 +1,25 @@
 package main.com.java.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="orderItem")
 public class OrderItem {
 	
+	@Id
+	@Column(name="orderItemID")
 	private long orderItemID;
+	
+	@Column(name="amount")
 	private long amount;
+	
+	@Column(name="accountNumberSender")
 	private String accountNumberSender = "";
+	
+	@Column(name="accountNumberReceiver")
 	private String accountNumberReceiver = "";
 	
 	public OrderItem(long orderItemID, long amount, String accountNumberSender, String accountNumberReceiver) {

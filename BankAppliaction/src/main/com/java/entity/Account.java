@@ -1,14 +1,29 @@
 package main.com.java.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="account")
 public class Account {
 
+	@Id
+	@Column(name="accountID")
 	private long accountID;
+	
+	
+	@Column(name="customerID")
 	private long customerID;
+	
+	@Column(name="balance")
 	private long balance;
+	
+	@Column(name="accountNumber")
 	private String accountNumber;
 
-	public Account(long accountID, long customerID, long balance, String accountNumber) {
-		this.accountID = accountID;
+	public Account(long customerID, long balance, String accountNumber) {
 		this.customerID = customerID;
 		this.balance = balance;
 		this.accountNumber = accountNumber;
