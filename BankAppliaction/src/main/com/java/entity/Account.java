@@ -22,11 +22,23 @@ public class Account {
 	
 	@Column(name="accountNumber")
 	private String accountNumber;
+	
+	@Column(name="password")
+	private String password;
 
-	public Account(long customerID, long balance, String accountNumber) {
+	public Account(long customerID, long balance, String accountNumber, String password) {
 		this.customerID = customerID;
 		this.balance = balance;
 		this.accountNumber = accountNumber;
+		this.password = password;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public long getAccountID() {
