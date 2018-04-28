@@ -2,14 +2,19 @@ package main.com.java.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name="customer")
 public class Customer {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="customerID")
 	private long customerID;
 	
@@ -21,6 +26,8 @@ public class Customer {
 	
 	@Column(name="country")
 	private String country;
+	
+	public Customer() {}
 	
 	public Customer(String firstName, String lastName, String country) {	
 		this.firstName = firstName;
