@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import main.com.java.daoimpl.AccountDAOImpl;
+import main.com.java.dao.AccountDAO;
 import main.com.java.entity.Account;
 
 @Controller
@@ -15,7 +15,7 @@ import main.com.java.entity.Account;
 public class AccountController {
 	
 	@Autowired
-	private AccountDAOImpl account;
+	private AccountDAO account;
 	
 	@RequestMapping("/list")
 	public String listCustomers(Model theModel){
@@ -24,7 +24,7 @@ public class AccountController {
 		
 		theModel.addAttribute("accounts", accountsList);
 		
-		return "list-customers";
+		return null; // return account-list;
 	}
 
 }

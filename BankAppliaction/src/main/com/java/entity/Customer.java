@@ -61,5 +61,13 @@ public class Customer {
 	}
 
 	
+	// for log diagnose.
+	@Override
+	public String toString() {
+		return "Customer [customerID=" + customerID + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", country=" + country + "]";
+	}
+
+	
 	
 }
