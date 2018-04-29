@@ -6,7 +6,7 @@
 <body>
 
 <form action="/action_page.php">
-  Login: 	<input type="text" name="fname"><br>
+  Username: <input type="text" name="fname"><br>
   Password: <input type="text" name="lname"><br>
   <input type="submit" value="Submit">
 </form>

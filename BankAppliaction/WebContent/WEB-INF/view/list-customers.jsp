@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstL/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
