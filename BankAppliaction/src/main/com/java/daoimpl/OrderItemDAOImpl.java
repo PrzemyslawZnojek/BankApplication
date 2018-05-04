@@ -26,7 +26,6 @@ public class OrderItemDAOImpl implements OrderItemDAO{
 	@Override
 	public List<OrderItem> getOrderItemList() {
 		Query<OrderItem> theQuery = createCurrentSession(sessionFactory).createQuery("from OrderItem", OrderItem.class);		
-		List<OrderItem> orderItemsList = theQuery.getResultList();
 		
 		return orderItemsList;
 	}

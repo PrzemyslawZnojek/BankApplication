@@ -20,7 +20,6 @@ public class AccountDAOImpl implements AccountDAO{
 	
 	public Session createCurrentSession(SessionFactory sf){
 		Session session = sf.getCurrentSession();
-		session.beginTransaction();
 		
 		return session;
 	}
