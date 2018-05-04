@@ -11,5 +11,4 @@ public interface CustomerDAO {
 	public void addCustomer(Customer theCustomer);
 	public void removeCustomer(Customer theCustomer);
 	public void updateCustomer(Customer theCustomer);
-	public void saveCustomer(Customer theCustomer);
 }
