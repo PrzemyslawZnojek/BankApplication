@@ -20,7 +20,7 @@ public class AccountController {
 	@RequestMapping("/list")
 	public String listCustomers(Model theModel){
 		
-		List<Account> accountsList = account.getAccounts();
+		List<Account> accountsList = account.getAccountList();
 		
 		theModel.addAttribute("accounts", accountsList);
 		

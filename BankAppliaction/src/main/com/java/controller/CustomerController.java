@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import main.com.java.dao.CustomerDAO;
 import main.com.java.entity.Customer;
 import main.com.java.service.CustomerService;
 

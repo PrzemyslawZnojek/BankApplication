@@ -18,13 +18,17 @@ public class AccountDAOImpl implements AccountDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	public Session createCurrentSession(SessionFactory sf){
+		Session session = sf.getCurrentSession();
+		session.beginTransaction();
+		
+		return session;
+	}
+	
 	@Override
 	@Transactional
-	public List<Account> getAccounts() {
-		Session session = sessionFactory.getCurrentSession();
-		
-		Query<Account> theQuery = session.createQuery("from Account", Account.class);
-		
+	public List<Account> getAccountList() {		
+		Query<Account> theQuery = createCurrentSession(sessionFactory).createQuery("from Account", Account.class);		
 		List<Account> accountsList = theQuery.getResultList();
 		
 		return accountsList;
@@ -32,25 +36,41 @@ public class AccountDAOImpl implements AccountDAO{
 
 	@Override
 	public Account getAccountById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {			
+			return createCurrentSession(sessionFactory).get(Account.class, id);		
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 	@Override
 	public void addAccount(Account theAccount) {
-		// TODO Auto-generated method stub
+		try {
+			createCurrentSession(sessionFactory).save(theAccount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void updateAccount(Account theAccount) {
-		// TODO Auto-generated method stub
-		
+		try {
+			createCurrentSession(sessionFactory).update(theAccount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 	}
 
 	@Override
 	public void removeAccount(Account theAccount) {
-		// TODO Auto-generated method stub
+		try {
+			createCurrentSession(sessionFactory).remove(theAccount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 		
 	}
 

@@ -2,8 +2,6 @@ package main.com.java.daoimpl;
 
 import java.util.List;
 
-import javax.print.attribute.standard.RequestingUserName;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -20,45 +18,63 @@ public class CustomerDAOImpl implements CustomerDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	public Session createCurrentSession(SessionFactory sf){
+		Session session = sf.getCurrentSession();
+		session.beginTransaction();
+		
+		return session;
+	}
+	
 	@Override
-	public List<Customer> getCustomers() {
-		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Customer> theQuery = currentSession.createQuery("from Customer", Customer.class);
-		List<Customer> customers = theQuery.getResultList();
-
-		return customers;
+	@Transactional
+	public List<Customer> getCustomerList() {
+		
+		Query<Customer> theQuery = createCurrentSession(sessionFactory).createQuery("from Customer", Customer.class);		
+		List<Customer> customersList = theQuery.getResultList();
+		
+		return customersList;
 	}
 
 	@Override
-	public Customer getCustomferById(int id) {
-		
-		Customer tomek = new Customer();
-		return tomek;
+	public Customer getCustomerById(int id) {
+		try {			
+			return createCurrentSession(sessionFactory).get(Customer.class, id);		
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 	@Override
 	public void addCustomer(Customer theCustomer) {
-		
-		Session currentSession = sessionFactory.getCurrentSession();
-		
-		//save the customer
-		currentSession.save(theCustomer);
+		try {
+			createCurrentSession(sessionFactory).save(theCustomer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void removeCustomer(Customer theCustomer) {
-
+		try {
+			createCurrentSession(sessionFactory).remove(theCustomer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 		
 	}
 
 	@Override
 	public void updateCustomer(Customer theCustomer) {
-
+		try {
+			createCurrentSession(sessionFactory).update(theCustomer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 		
 	}
 
-
-	
 	
 }
