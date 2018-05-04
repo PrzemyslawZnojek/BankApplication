@@ -10,12 +10,6 @@
 
 <body>
 
-	<form action="" method="GET">
-	
-		<input type="text" name="customerName"
-	
-	
-	</form>
 
 </body>
 
