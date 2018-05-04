@@ -22,12 +22,17 @@ public class CustomerController {
 	public String listCustomers(Model theModel) {
 		
 		// get customer from DAO
-		List<Customer> theCustomers = customerDAO.getCustomers();
+		List<Customer> theCustomers = customerDAO.getCustomersList();
 		
 		// add customer to the model
 		theModel.addAttribute("customers", theCustomers);
 		
 		return "list-customers";
+	}
+	
+	@RequestMapping("/addCustomer")
+	public String addCustomer(Model theModel){
+		return "add-customer";
 	}
 
 }

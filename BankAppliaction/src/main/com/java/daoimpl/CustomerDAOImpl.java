@@ -2,6 +2,8 @@ package main.com.java.daoimpl;
 
 import java.util.List;
 
+import javax.print.attribute.standard.RequestingUserName;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -15,25 +17,42 @@ import main.com.java.entity.Customer;
 @Repository
 public class CustomerDAOImpl implements CustomerDAO{
 
-	//need to inject the session factory
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	@Override
 	@Transactional
-	public List<Customer> getCustomers() {
-		
-		// get the current hibernate session
+	public List<Customer> getCustomersList() {
 		Session currentSession = sessionFactory.getCurrentSession();
-		
-		// execute a query
 		Query<Customer> theQuery = currentSession.createQuery("from Customer", Customer.class);
-		
-		// execute a query and get the result list
 		List<Customer> customers = theQuery.getResultList();
-		 
-		// return the result
+
 		return customers;
+	}
+
+	@Override
+	public Customer getCustomferById(int id) {
+		
+		Customer tomek = new Customer();
+		return tomek;
+	}
+
+	@Override
+	public void addCustomer(Customer theCustomer) {
+
+		
+	}
+
+	@Override
+	public void removeCustomer(Customer theCustomer) {
+
+		
+	}
+
+	@Override
+	public void updateCustomer(Customer theCustomer) {
+
+		
 	}
 
 	
