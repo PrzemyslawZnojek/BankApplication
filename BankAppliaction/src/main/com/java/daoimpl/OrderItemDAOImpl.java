@@ -29,6 +29,7 @@ public class OrderItemDAOImpl implements OrderItemDAO{
 		Query<OrderItem> theQuery = createCurrentSession(sessionFactory).createQuery("from OrderItem", OrderItem.class);		
 		List<OrderItem> orderItemsList = theQuery.getResultList();
 		
+		
 		return orderItemsList;
 	}
 
