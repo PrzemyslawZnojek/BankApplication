@@ -25,12 +25,20 @@ public class Account {
 	
 	@Column(name="password")
 	private String password;
+	
+	@Column(name="username")
+	private String username;
+	
+	@Column(name="admin")
+	private Boolean admin;
 
-	public Account(long customerID, long balance, String accountNumber, String password) {
+	public Account(long customerID, long balance, String accountNumber, String password, String username, Boolean admin) {
 		this.customerID = customerID;
 		this.balance = balance;
 		this.accountNumber = accountNumber;
 		this.password = password;
+		this.username = username;
+		this.admin = admin;
 	}
 	
 	public String getPassword() {
