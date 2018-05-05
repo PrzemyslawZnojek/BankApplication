@@ -48,20 +48,10 @@ public class CustomerDAOImpl implements CustomerDAO{
 	@Override
 	public void addCustomer(Customer theCustomer) {
 		try {
-			createCurrentSession(sessionFactory).save(theCustomer);
+			createCurrentSession(sessionFactory).saveOrUpdate(theCustomer);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-	}
-
-	@Override
-	public void removeCustomer(Customer theCustomer) {
-		try {
-			createCurrentSession(sessionFactory).remove(theCustomer);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
 		
 	}
 
@@ -74,6 +64,52 @@ public class CustomerDAOImpl implements CustomerDAO{
 		} 
 		
 	}
+
+	@Override
+	public Customer getCustomer(long theId) {
+		
+		// now retrieve/read from database using the primary key
+		Customer theCustomer = createCurrentSession(sessionFactory).get(Customer.class, theId);
+		
+		return theCustomer;
+	}
+
+	@Override
+	public void deleteCustomer(long theId) {
+		
+		Query query = createCurrentSession(sessionFactory).createQuery("delete from Customer where id=:customerID");
+		query.setParameter("customerID", theId);
+		
+		query.executeUpdate();
+	}
+
+	@Override
+    public List<Customer> searchCustomers(String theSearchName) {
+        
+        Query theQuery = null;
+        
+        //
+        // only search by name if theSearchName is not empty
+        //
+        if (theSearchName != null && theSearchName.trim().length() > 0) {
+
+            // search for firstName or lastName ... case insensitive
+            theQuery =createCurrentSession(sessionFactory).createQuery("from Customer where lower(firstName) like :theName or lower(lastName) like :theName", Customer.class);
+            theQuery.setParameter("theName", "%" + theSearchName.toLowerCase() + "%");
+
+        }
+        else {
+            // theSearchName is empty ... so just get all customers
+            theQuery =createCurrentSession(sessionFactory).createQuery("from Customer", Customer.class);            
+        }
+        
+        // execute query and get result list
+        List<Customer> customers = theQuery.getResultList();
+                
+        // return the results        
+        return customers;
+        
+    }
 
 	
 }

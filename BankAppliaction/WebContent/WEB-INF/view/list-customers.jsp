@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 
@@ -33,20 +34,48 @@
 				   onclick="window.location.href='showFormForAdd'; return false;"
 				   class="add-button"
 			/>
+			
+			<!--  add a search box -->
+            <form:form action="search" method="POST">
+                Search customer: <input type="text" name="theSearchName" />
+                
+                <input type="submit" value="Search" class="add-button" />
+            </form:form>
 		
 			<table>
 				<tr>
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Country</th>
+					<th>Action</th>
 				</tr>
 				
 				<!-- loop over customers -->
 				<c:forEach var="tempCustomer" items="${customers}">
+				
+				<!-- construct an "update" link with customer id -->
+					<c:url var="updateLink" value="/customer/showFormForUpdate">
+						<c:param name="customerID" value="${tempCustomer.customerID}" />
+					</c:url>
+				
+				<!-- construct an "delete" link with customer id -->
+					<c:url var="deleteLink" value="/customer/delete">
+						<c:param name="customerID" value="${tempCustomer.customerID}" />
+					</c:url>
+				
 				<tr>
 					<td>${tempCustomer.firstName}</td>
 					<td>${tempCustomer.lastName}</td>
 					<td>${tempCustomer.country}</td>
+					
+					<td>
+					<!-- display the update link -->
+					<a href="${updateLink}">Update</a>
+					|
+					<a href="${deleteLink}"
+					onclick="if (!(confirm('Are you sure that you want to delete this user?'))) return false">Delete</a>
+					</td>
+					
 				</tr>
 				</c:forEach>
 			</table>
