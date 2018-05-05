@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import main.com.java.dao.OrderItemDAO;
 import main.com.java.entity.Account;
+import main.com.java.entity.Customer;
 import main.com.java.entity.OrderItem;
 
 public class OrderItemDAOImpl implements OrderItemDAO{
@@ -26,6 +27,7 @@ public class OrderItemDAOImpl implements OrderItemDAO{
 	@Override
 	public List<OrderItem> getOrderItemList() {
 		Query<OrderItem> theQuery = createCurrentSession(sessionFactory).createQuery("from OrderItem", OrderItem.class);		
+		List<OrderItem> orderItemsList = theQuery.getResultList();
 		
 		return orderItemsList;
 	}
