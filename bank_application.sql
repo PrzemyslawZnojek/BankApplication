@@ -33,7 +33,10 @@ CREATE TABLE IF NOT EXISTS `Account` (
 `accountID` bigint(8) NOT NULL,
   `customerID` bigint(8) NOT NULL,
   `balance` bigint(10) NOT NULL,
-  `accountNumber` varchar(26) COLLATE utf8_polish_ci NOT NULL
+  `accountNumber` varchar(26) COLLATE utf8_polish_ci NOT NULL,
+  `password` varchar(26) COLLATE utf8_polish_ci NOT NULL,
+  `admin` boolean,
+  `username` varchar(26) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
