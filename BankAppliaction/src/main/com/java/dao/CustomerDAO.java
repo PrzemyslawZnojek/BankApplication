@@ -15,4 +15,5 @@ public interface CustomerDAO {
 	public void removeCustomer(Customer theCustomer);
 	public void updateCustomer(Customer theCustomer);
 	public Session createCurrentSession(SessionFactory sf);
+	public Customer getCustomer(long theId);
 }

@@ -30,4 +30,10 @@ public class CustomerServiceImpl implements CustomerService {
 		
 	}
 
+	@Override
+	@Transactional
+	public Customer getCustomer(long theId) {
+		return customerDAO.getCustomer(theId);
+	}
+
 }
