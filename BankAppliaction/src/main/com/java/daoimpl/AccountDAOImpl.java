@@ -73,5 +73,13 @@ public class AccountDAOImpl implements AccountDAO{
 		
 	}
 
+	@Override
+	public void saveAccount(Account theAccount) {
+		// get hibernate session
+		
+		//save the account 
+		
+	}
+
 	
 }

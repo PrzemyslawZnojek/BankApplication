@@ -14,5 +14,6 @@ public interface AccountDAO {
 	public void updateAccount(Account theAccount);
 	public void removeAccount(Account theAccount);
 	public Session createCurrentSession(SessionFactory sf);
+	public void saveAccount(Account theAccount); //this only in use
 	
 }

@@ -1,10 +1,12 @@
 package main.com.java.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -27,6 +29,9 @@ public class Customer {
 	@Column(name="country")
 	private String country;
 	
+	@OneToOne(mappedBy="customer", cascade=CascadeType.ALL)
+	private Account account;
+
 	public Customer() {}
 	
 	public Customer(String firstName, String lastName, String country) {	
@@ -58,6 +63,14 @@ public class Customer {
 	}
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import main.com.java.dao.AccountDAO;
 import main.com.java.dao.CustomerDAO;
+import main.com.java.entity.Account;
 import main.com.java.entity.Customer;
 
 
@@ -15,6 +17,7 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	private CustomerDAO customerDAO;
+	private AccountDAO accountDAO;
 
 	@Override
 	@Transactional

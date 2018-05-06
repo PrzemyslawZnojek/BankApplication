@@ -50,6 +50,7 @@ public class CustomerController {
 		
 		// save the customer using our service
 		customerService.addCustomer(theCustomer);
+		// HERE !! OR MAYBE IN AccountController (?)
 		
 		return "redirect:/customer/list";
 	}

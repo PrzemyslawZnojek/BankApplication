@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import main.com.java.entity.Account;
 import main.com.java.entity.Customer;
 
 public interface CustomerDAO {

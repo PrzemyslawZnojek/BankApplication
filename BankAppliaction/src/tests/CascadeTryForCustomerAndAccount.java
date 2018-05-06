@@ -9,7 +9,7 @@ import main.com.java.entity.Account;
 import main.com.java.entity.Customer;
 //import main.com.java.entity.OrderItem;
 
-public class CreateCustomer {
+public class CascadeTryForCustomerAndAccount {
 
 	public static void main(String[] args) {
 		
@@ -24,19 +24,20 @@ public class CreateCustomer {
 		
 		try {
 			
-			// create the object
-			Customer theCustomer = new Customer("John", "Doe", "Poland");
-			
-			Account theAccount = new Account(1000, "x", "x", "d", false);
-			
-			//associate the object
-			theAccount.setCustomer(theCustomer);
-			
 			// start a transaction
 			session.beginTransaction();
 			
-			// save Account
-			session.save(theAccount);
+			// get the instructor detail object
+			long theId = 3;
+			Customer tempCustomer =
+					session.get(Customer.class, theId);
+			
+			//sysouts
+			System.out.println("tempCustomer: " + tempCustomer);
+			System.out.println("the associated Account: " + tempCustomer.getAccount());
+			
+			//delete
+			session.delete(tempCustomer);
 			
 			// commit transaction
 			session.getTransaction().commit();
@@ -46,8 +47,6 @@ public class CreateCustomer {
 		} finally {
 			factory.close();
 		}
-
-		
 
 	}
 
