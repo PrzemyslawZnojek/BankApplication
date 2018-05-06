@@ -33,6 +33,9 @@ public class SecurityConfig
 			.formLogin()
 			.loginPage("/showMyLoginPage")
 			.loginProcessingUrl("/authenticateTheUser")
+			.permitAll()
+			.and()
+			.logout()
 			.permitAll();
 	}
 	
