@@ -19,6 +19,9 @@ public class Account {
 	@Column(name="accountID")
 	private long accountID;
 	
+	@Column(name="idOfCustomer")
+	private long idOfCustomer;
+	
 	@Column(name="balance")
 	private long balance;
 	
@@ -28,16 +31,15 @@ public class Account {
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="username")
-	private String username;
-	
 	@Column(name="admin")
 	private Boolean admin;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="idOfCustomer")
-	private Customer customer;
+	@Column(name="username")
+	private String username;
 
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="idOfCustomer", insertable = false, updatable = false)
+	private Customer customer;
 
 	public Account() {}
 	
@@ -53,6 +55,10 @@ public class Account {
 		return accountID;
 	}
 
+	public long getIdOfCustomer() {
+		return idOfCustomer;
+	}
+	
 	public long getBalance() {
 		return balance;
 	}
@@ -79,6 +85,10 @@ public class Account {
 
 	public void setAccountID(long accountID) {
 		this.accountID = accountID;
+	}
+	
+	public void setIdOfCustomer(long idOfCustomer) {
+		this.idOfCustomer = idOfCustomer;
 	}
 
 	public void setBalance(long balance) {

@@ -4,6 +4,6 @@ import main.com.java.entity.Account;
 
 public interface AccountService {
 
-	void addAccount(Account theAccount);
+	public void addAccount(Account theAccount);
 
 }

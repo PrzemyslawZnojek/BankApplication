@@ -47,7 +47,9 @@ public class AccountDAOImpl implements AccountDAO{
 	@Override
 	public void addAccount(Account theAccount) {
 		try {
-			createCurrentSession(sessionFactory).save(theAccount);
+			Session currentSession = sessionFactory.getCurrentSession();
+			currentSession.saveOrUpdate(theAccount);
+			currentSession.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -76,9 +78,10 @@ public class AccountDAOImpl implements AccountDAO{
 	@Override
 	public void saveAccount(Account theAccount) {
 		// get hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
 		
 		//save the account 
-		
+		currentSession.save(theAccount);
 	}
 
 	

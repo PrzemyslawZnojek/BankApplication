@@ -17,7 +17,7 @@ public class AccountServiceImpl implements AccountService {
 	@Transactional
 	public void addAccount(Account theAccount) {
 		
-		accountDAO.saveAccount(theAccount);
+		accountDAO.addAccount(theAccount);
 		
 	}
 

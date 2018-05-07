@@ -49,6 +49,7 @@
 		
 			<table>
 				<tr>
+					<th>customerID</th>
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Country</th>
@@ -69,6 +70,7 @@
 					</c:url>
 				
 				<tr>
+					<td>${tempCustomer.customerID}</td>
 					<td>${tempCustomer.firstName}</td>
 					<td>${tempCustomer.lastName}</td>
 					<td>${tempCustomer.country}</td>
