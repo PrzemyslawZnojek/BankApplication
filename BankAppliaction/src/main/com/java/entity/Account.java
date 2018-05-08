@@ -1,12 +1,16 @@
 package main.com.java.entity;
 
+import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -40,7 +44,32 @@ public class Account {
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idOfCustomer", insertable = false, updatable = false)
 	private Customer customer;
+	
+	public Collection<OrderItem> getPayers() {
+		return payers;
+	}
 
+	public Collection<OrderItem> getReceivers() {
+		return receivers;
+	}
+
+	public void setPayers(Collection<OrderItem> payers) {
+		this.payers = payers;
+	}
+
+	public void setReceivers(Collection<OrderItem> receivers) {
+		this.receivers = receivers;
+	}
+
+	@OneToMany(mappedBy="senderAccount")
+    private Collection<OrderItem> payers;
+
+    @OneToMany(mappedBy="receiverAccount")
+    private Collection<OrderItem> receivers;
+
+	//@OneToMany @JoinColumn(name = "accountNumberReceiver")
+	//private OrderItem receiver;
+	
 	public Account() {}
 	
 	public Account(long balance, String accountNumber, String password, String username, Boolean admin) {
