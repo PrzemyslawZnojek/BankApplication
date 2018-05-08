@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import main.com.java.entity.Account;
 import main.com.java.entity.OrderItem;
 import main.com.java.service.OrderItemService;
 
@@ -31,10 +33,11 @@ public class OrderItemController {
 	}
 	
 	@PostMapping("/saveTransfer")
-	public String saveTransfer(@ModelAttribute("orderitem") OrderItem theOrderItem) {
+	public String saveTransfer(@ModelAttribute("orderitem") OrderItem theOrderItem, @ModelAttribute("account") Account account,
+			@RequestParam("accountNumberSender") String Send, @RequestParam("accountNumberReceiver") String Rec, @RequestParam("amount") long amount) {
 		
 		// save the customer using our service
-		orderItemService.saveTransfer(theOrderItem);
+		orderItemService.saveTransfer(theOrderItem, account, Send, Rec, amount);
 		
 		return "redirect:/customer/list";
 	}

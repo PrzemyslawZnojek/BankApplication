@@ -52,7 +52,7 @@
 					
 					<tr>
 						<td><label>Password:</label></td>
-						<td><form:input path="password" /></td>
+						<td><form:input type="password" path="password" /></td>
 					</tr>
 					
 					<tr>
