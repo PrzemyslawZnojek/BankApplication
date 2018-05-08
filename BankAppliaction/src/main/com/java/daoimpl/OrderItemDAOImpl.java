@@ -6,12 +6,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import main.com.java.dao.OrderItemDAO;
 import main.com.java.entity.Account;
 import main.com.java.entity.Customer;
 import main.com.java.entity.OrderItem;
 
+@Repository
 public class OrderItemDAOImpl implements OrderItemDAO{
 
 	@Autowired
@@ -43,6 +46,7 @@ public class OrderItemDAOImpl implements OrderItemDAO{
 	}
 
 	@Override
+	@Transactional
 	public void addOrderItem(OrderItem theOrderItem) {
 		try {
 			createCurrentSession(sessionFactory).save(theOrderItem);
@@ -71,6 +75,15 @@ public class OrderItemDAOImpl implements OrderItemDAO{
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public void addTransfer(OrderItem theOrderItem) {
+		try {
+			createCurrentSession(sessionFactory).saveOrUpdate(theOrderItem);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 

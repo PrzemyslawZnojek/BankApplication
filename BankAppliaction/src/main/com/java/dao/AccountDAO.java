@@ -10,7 +10,7 @@ public interface AccountDAO {
 
 	public List<Account> getAccountList();
 	public Account getAccountById(int id);
-	public void addAccount(Account theAccount);
+	public void addAccount(Account theAccount); //in usage
 	public void updateAccount(Account theAccount);
 	public void removeAccount(Account theAccount);
 	public Session createCurrentSession(SessionFactory sf);

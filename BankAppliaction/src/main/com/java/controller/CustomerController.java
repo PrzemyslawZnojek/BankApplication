@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import main.com.java.entity.Account;
 import main.com.java.entity.Customer;
 import main.com.java.service.CustomerService;
 
@@ -95,4 +94,6 @@ public class CustomerController {
 
         return "list-customers";        
     }
+
+	
 }
