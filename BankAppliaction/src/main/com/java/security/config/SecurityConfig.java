@@ -1,27 +1,32 @@
 package main.com.java.security.config;
 
+
+import java.beans.PropertyVetoException;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig 
 					extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private DataSource securityDataSource;
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
-		UserBuilder users = User.withDefaultPasswordEncoder();
-		
-		auth.inMemoryAuthentication()
-			.withUser(users.username("john").password("test123").roles("EMPLOYEE"))
-			.withUser(users.username("mary").password("test123").roles("MANAGER"))
-			.withUser(users.username("susan").password("test123").roles("ADMIN"));
+			auth.jdbcAuthentication().dataSource(securityDataSource);
 	
 	}
 
@@ -33,13 +38,36 @@ public class SecurityConfig
 			.formLogin()
 			.loginPage("/showMyLoginPage")
 			.loginProcessingUrl("/authenticateTheUser")
+			.defaultSuccessUrl("/success", true)
 			.permitAll()
 			.and()
 			.logout()
 			.permitAll();
 	}
 	
-	
+	@Bean
+	public DataSource securityDataSource(){
+		
+		ComboPooledDataSource securityDataSource = new ComboPooledDataSource();
+		
+		try{
+			securityDataSource.setDriverClass("com.mysql.jdbc.Driver");
+		}catch (PropertyVetoException e) {
+			throw new RuntimeException(e);
+		}
+		
+		securityDataSource.setJdbcUrl("jdbc:mysql://localhost:3306/bank_application?useSSL=false");
+		securityDataSource.setUser("admin");
+		securityDataSource.setPassword("admin");
+		
+		securityDataSource.setInitialPoolSize(5);
+		securityDataSource.setMinPoolSize(5);
+		securityDataSource.setMaxPoolSize(20);
+		securityDataSource.setMaxIdleTime(3000);
+		
+		
+		return securityDataSource;
+	}
 
 	
 }
