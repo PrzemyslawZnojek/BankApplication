@@ -34,7 +34,7 @@ public class OrderItemController {
 	public String saveTransfer(@ModelAttribute("orderitem") OrderItem theOrderItem) {
 		
 		// save the customer using our service
-		orderItemService.addTransfer(theOrderItem);
+		orderItemService.saveTransfer(theOrderItem);
 		
 		return "redirect:/customer/list";
 	}

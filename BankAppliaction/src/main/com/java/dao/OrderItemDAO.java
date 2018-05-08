@@ -15,5 +15,5 @@ public interface OrderItemDAO {
 	public void removeOrderItem(OrderItem theOrderItem);
 	public void updateOrderItem(OrderItem theOrderItem);
 	public Session createCurrentSession(SessionFactory sf);
-	public void addTransfer(OrderItem theOrderItem);
+	public void saveTransfer(OrderItem theOrderItem);
 }

@@ -78,13 +78,16 @@ public class OrderItemDAOImpl implements OrderItemDAO{
 	}
 
 	@Override
-	public void addTransfer(OrderItem theOrderItem) {
-		try {
-			createCurrentSession(sessionFactory).saveOrUpdate(theOrderItem);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void saveTransfer(OrderItem theOrderItem) {
+
+		// get hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		//save the account 
+		currentSession.save(theOrderItem);
+		
 	}
+
 
 
 }

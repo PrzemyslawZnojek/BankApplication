@@ -15,10 +15,10 @@ public class OrderItemServiceImpl implements OrderItemService {
 
 	@Override
 	@Transactional
-	public void addTransfer(OrderItem theOrderItem) {
+	public void saveTransfer(OrderItem theOrderItem) {
 
-		orderItemDAO.addTransfer(theOrderItem);
+		orderItemDAO.saveTransfer(theOrderItem);
 		
 	}
-
 }
+
