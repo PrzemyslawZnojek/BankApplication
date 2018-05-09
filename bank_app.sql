@@ -1,8 +1,5 @@
 -- MySQL Workbench Forward Engineering
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
 -- Schema mydb
@@ -31,6 +28,15 @@ AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_polish_ci;
 
+CREATE TABLE IF NOT EXISTS `bank_application`.`users` (
+ `username` varchar(50)  CHARACTER SET 'utf8' COLLATE 'utf8_polish_ci' NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE = InnoDB
+AUTO_INCREMENT = 6
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_polish_ci;
 
 -- -----------------------------------------------------
 -- Table `bank_application`.`account`
@@ -40,15 +46,17 @@ CREATE TABLE IF NOT EXISTS `bank_application`.`account` (
   `idOfCustomer` BIGINT(8) NOT NULL,
   `balance` BIGINT(10) NOT NULL,
   `accountNumber` VARCHAR(26) CHARACTER SET 'utf8' COLLATE 'utf8_polish_ci' NOT NULL,
-  `password` VARCHAR(26) CHARACTER SET 'utf8' COLLATE 'utf8_polish_ci' NOT NULL,
-  `admin` TINYINT(1) NULL DEFAULT NULL,
-  `username` VARCHAR(26) CHARACTER SET 'utf8' COLLATE 'utf8_polish_ci' NOT NULL,
+  `username` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_polish_ci' NOT NULL,
   PRIMARY KEY (`accountID`),
   UNIQUE INDEX `accountNumber` (`accountNumber` ASC),
   INDEX `customerID` (`idOfCustomer` ASC),
   CONSTRAINT `Account_ibfk_1`
     FOREIGN KEY (`idOfCustomer`)
     REFERENCES `bank_application`.`customer` (`customerID`)
+    ON UPDATE CASCADE,
+  CONSTRAINT `Account_ibfk_2` 
+    FOREIGN KEY (`username`) 
+    REFERENCES `bank_application`.`users` (`username`)
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 11
@@ -80,7 +88,12 @@ AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_polish_ci;
 
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+CREATE TABLE IF NOT EXISTS `bank_application`.`authorities` (
+  `username` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_polish_ci' NOT NULL,
+  `authority` varchar(50) NOT NULL,
+  UNIQUE KEY `authorities_idx_1` (`username`,`authority`),
+  CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `bank_application`.`users` (`username`)
+) ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_polish_ci;

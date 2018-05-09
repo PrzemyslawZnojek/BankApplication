@@ -1,5 +1,5 @@
-<!-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
 <!doctype html>
 <html lang="en">
@@ -11,11 +11,50 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
 
-	<link type="text/css"
+	<!--  link type="text/css"
 	rel="stylesheet"
-	href="logging-styles.css"/>
+	href="logging-styles.css" /-->
 
 
+	<style>.panel-title {
+    text-align: center;
+}
+
+#loginbox {
+    width: 450px;
+    margin: 100px auto 0 auto;
+}
+
+.form-group {
+    margin: 10px;
+    text-align: center;
+}
+
+.alert {
+    width: 80%;
+    margin: 5px auto;
+}
+
+.input-group {
+    width: 80%;
+    height: 60px;
+    margin: 5px auto;
+}
+.input-group-addon {
+    font-size: 23px !important;
+    height: 100%;
+}
+
+.input-group .form-control {
+    height: 100%;
+}
+
+#login-button {
+    width: 180px;
+    margin: 10px auto;
+    height: 50px;
+    display: inline-block;
+}</style>
 	<!-- Reference Bootstrap files -->
 	<link rel="stylesheet"
 		 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
