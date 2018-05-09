@@ -5,7 +5,6 @@ import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,18 +31,16 @@ public class Account {
 	@Column(name="accountNumber")
 	private String accountNumber;
 	
-	@Column(name="password")
-	private String password;
-	
-	@Column(name="admin")
-	private Boolean admin;
-	
 	@Column(name="username")
 	private String username;
 
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idOfCustomer", insertable = false, updatable = false)
 	private Customer customer;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="username", insertable = false, updatable = false)
+	private Users users;
 	
 	public Collection<OrderItem> getPayers() {
 		return payers;
@@ -75,9 +72,7 @@ public class Account {
 	public Account(long balance, String accountNumber, String password, String username, Boolean admin) {
 		this.balance = balance;
 		this.accountNumber = accountNumber;
-		this.password = password;
 		this.username = username;
-		this.admin = admin;
 	}
 
 	public long getAccountID() {
@@ -96,16 +91,8 @@ public class Account {
 		return accountNumber;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
 	public String getUsername() {
 		return username;
-	}
-
-	public Boolean getAdmin() {
-		return admin;
 	}
 
 	public Customer getCustomer() {
@@ -128,16 +115,8 @@ public class Account {
 		this.accountNumber = accountNumber;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public void setAdmin(Boolean admin) {
-		this.admin = admin;
 	}
 
 	public void setCustomer(Customer customer) {
@@ -147,8 +126,7 @@ public class Account {
 	@Override
 	public String toString() {
 		return "Account [accountID=" + accountID + ", balance=" + balance
-				+ ", accountNumber=" + accountNumber + ", password=" + password + ", username=" + username + ", admin="
-				+ admin + ", customer=" + customer + "]";
+				+ ", accountNumber=" + accountNumber + ", username=" + username + ", customer=" + customer + "]";
 	}
 
 	

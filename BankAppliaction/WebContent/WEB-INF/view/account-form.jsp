@@ -51,16 +51,6 @@
 					</tr>
 					
 					<tr>
-						<td><label>Password:</label></td>
-						<td><form:input type="password" path="password" /></td>
-					</tr>
-					
-					<tr>
-						<td><label>Admin:</label></td>
-						<td><form:input path="admin" /></td>
-					</tr>
-					
-					<tr>
 						<td><label>Username:</label></td>
 						<td><form:input path="username" /></td>
 					</tr>
@@ -78,6 +68,27 @@
 		
 		
 		</form:form>
+		
+		
+		<form:form action="saveAccount" modelAttribute="account" method="POST">
+
+		
+			<!-- need to associate this data with customer id -->
+			<form:hidden path="accountID" />
+					
+			<table>
+				<tbody>
+				
+					<tr>
+						<td><label>Id Of Customer:</label></td>
+						<td><form:input path="idOfCustomer" /></td>
+					</tr>
+					</tbody>
+			</table>
+		</form:form>
+		
+		
+		
 	
 		<div style="clear; both;"></div>
 		
