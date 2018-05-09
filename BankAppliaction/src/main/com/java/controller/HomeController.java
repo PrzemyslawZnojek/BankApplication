@@ -19,12 +19,11 @@ public class HomeController {
 
         String role =  authResult.getAuthorities().toString();
 
-        int i = 2;
-        if(i == 1){
-            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/customer/list"));                            
-        }else if(i == 2) {
-                response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/user/panel"));
-            }
-       }
+        if(role.contains("ROLE_USER")){
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/user/panel"));                           
+        }else if(role.contains("ROLE_EMPLOYEE")) {
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/customer/list")); 
+        }
+    }
     
 }

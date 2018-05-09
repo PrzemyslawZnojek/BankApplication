@@ -33,6 +33,8 @@ public class SecurityConfig
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+			.antMatchers("/user/**").hasRole("USER")
+			.antMatchers("/clients/**").hasRole("EMPLOYEE")
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()

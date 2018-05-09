@@ -42,7 +42,7 @@ public class CustomerController {
 		// add customer to the model
 		theModel.addAttribute("customers", theCustomers);
 		
-		return "list-customers";
+		return "main";
 	}
 	
 	@PostMapping("/saveCustomer")

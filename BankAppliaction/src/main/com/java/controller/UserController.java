@@ -10,9 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 	
 	@GetMapping("/panel")
-	public String showFormForAddAccount(Model theModel){
+	public String showPanel(Model theModel){
 
 		return "indexUser";
+	}
+	
+	public String showFormForMakeTransfer(Model theModel){
+
+		return "transfer-form";
 	}
 
 }
