@@ -18,10 +18,10 @@ public class AccountDAOImpl implements AccountDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public Session createCurrentSession(SessionFactory sf){
-		Session session = sf.getCurrentSession();
-		
+	public Session createCurrentSession(SessionFactory sessionFactory){
+		Session session = sessionFactory.getCurrentSession();
 		return session;
+		
 	}
 	
 	@Override
@@ -59,7 +59,7 @@ public class AccountDAOImpl implements AccountDAO{
 	@Override
 	public void updateAccount(Account theAccount) {
 		try {
-			createCurrentSession(sessionFactory).update(theAccount);
+			createCurrentSession(sessionFactory).saveOrUpdate(theAccount);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
@@ -81,7 +81,8 @@ public class AccountDAOImpl implements AccountDAO{
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		//save the account 
-		currentSession.save(theAccount);
+		currentSession.saveOrUpdate(theAccount);
+		currentSession.clear();
 	}
 
 	

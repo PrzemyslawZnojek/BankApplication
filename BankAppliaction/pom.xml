@@ -32,24 +32,249 @@
       </plugin>
     </plugins>
   </build>
+  
   <dependencies>
+  
+  <!-- Spring -->
+  
+  	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-core</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-expression</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.springframework</groupId>
+    	<artifactId>spring-instrument</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-jcl</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-jdbc</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-jms</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-messaging</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-orm</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-oxm</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+   		<groupId>org.springframework</groupId>
+    	<artifactId>spring-test</artifactId>
+    	<version>5.0.2.RELEASE</version>
+    	<scope>test</scope>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-tx</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-web</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-webflux</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-webmvc</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-websocket</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+  
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-beans</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+	
+  	<dependency>
+	    <groupId>org.springframework</groupId>
+    	<artifactId>spring-context</artifactId>
+   	 	<version>5.0.2.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-context-support</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+  	
+  	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-indexer -->
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-context-indexer</artifactId>
+    	<version>5.0.2.RELEASE</version>
+	</dependency>
+  	
   	<dependency>
   		<groupId>org.springframework.security</groupId>
   		<artifactId>spring-security-web</artifactId>
+  		<version>5.0.0.RELEASE</version>
   	</dependency>
+  	
   	<dependency>
   		<groupId>org.springframework.security</groupId>
   		<artifactId>spring-security-config</artifactId>
   		<version>5.0.0.RELEASE</version>
   	</dependency>
+  	
+  	
+  	<!-- Junit -->
+  	<dependency>
+    	<groupId>junit</groupId>
+    	<artifactId>junit</artifactId>
+    	<version>4.12</version>
+    	<scope>test</scope>
+	</dependency>	
+	
+	
+	<!-- Hibernate -->
+	<dependency>
+    	<groupId>org.hibernate</groupId>
+    	<artifactId>hibernate-core</artifactId>
+    	<version>5.2.16.Final</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>org.hibernate</groupId>
+    	<artifactId>hibernate-c3p0</artifactId>
+    	<version>5.2.16.Final</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>org.hibernate</groupId>
+    	<artifactId>hibernate-entitymanager</artifactId>
+   	 	<version>5.2.16.Final</version>
+	</dependency>
+
+	<dependency>
+    	<groupId>org.hibernate.javax.persistence</groupId>
+   	 	<artifactId>hibernate-jpa-2.1-api</artifactId>
+    	<version>1.0.0.Final</version>
+	</dependency>  
+	
+	<dependency>
+    	<groupId>org.hibernate.common</groupId>
+    	<artifactId>hibernate-commons-annotations</artifactId>
+    	<version>5.0.1.Final</version>
+	</dependency>   
+     
+     
+    <!-- Utils -->
+    <dependency>
+    	<groupId>com.mchange</groupId>
+    	<artifactId>c3p0</artifactId>
+    	<version>0.9.5.2</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>antlr</groupId>
+    	<artifactId>antlr</artifactId>
+    	<version>2.7.7</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>5.1.46</version>
+	</dependency>
+	
+	<dependency>
+   		<groupId>com.fasterxml</groupId>
+    	<artifactId>classmate</artifactId>
+    	<version>1.4.0</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>dom4j</groupId>
+    	<artifactId>dom4j</artifactId>
+    	<version>1.6.1</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>org.jboss</groupId>
+    	<artifactId>jandex</artifactId>
+    	<version>2.0.5.Final</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>org.javassist</groupId>
+    	<artifactId>javassist</artifactId>
+    	<version>3.22.0-GA</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>javax.servlet.jsp.jstl</groupId>
+    	<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+    	<version>1.2.1</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>org.jboss.logging</groupId>
+    	<artifactId>jboss-logging</artifactId>
+    	<version>3.3.2.Final</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>org.jboss.spec.javax.transaction</groupId>
+    	<artifactId>jboss-transaction-api_1.1_spec</artifactId>
+    	<version>1.0.1.Final</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>com.mchange</groupId>
+    	<artifactId>mchange-commons-java</artifactId>
+    	<version>0.2.11</version>
+	</dependency>
+	
+	
+    
   </dependencies>
-  <dependencyManagement>
-  	<dependencies>
-  		<dependency>
-  			<groupId>org.springframework.security</groupId>
-  			<artifactId>spring-security-web</artifactId>
-  			<version>5.0.0.RELEASE</version>
-  		</dependency>
-  	</dependencies>
-  </dependencyManagement>
 </project>

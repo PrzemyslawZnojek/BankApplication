@@ -22,7 +22,6 @@ public class OrderItemDAOImpl implements OrderItemDAO{
 	
 	public Session createCurrentSession(SessionFactory sf){
 		Session session = sf.getCurrentSession();
-		session.beginTransaction();
 		
 		return session;
 	}

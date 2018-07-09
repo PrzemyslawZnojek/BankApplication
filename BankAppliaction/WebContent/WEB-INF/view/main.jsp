@@ -128,22 +128,13 @@ h3 {
 					class="btn btn-primary"
 				/>
 				
-				<input type="button" value="Make Transfer"
-					onclick="window.location.href='makeTransfer'; return false;"
-					class="btn btn-primary"
-				/>
-			</div>
+		</div>
 		</div>
 		<div class="col-xs-9 main">	
 			<!--  add a search box -->
 
 
-			<form:form action="search" method="POST" class="input-group search">
-				<input type="text" class="form-control" placeholder="Search customer" name="theSearchName">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button">Go!</button>
-				</span>
-			</form:form>
+			
 	
 		
 		<div class="table-container">

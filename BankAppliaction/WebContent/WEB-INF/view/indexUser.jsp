@@ -40,8 +40,6 @@ h3 {
     float: right;
 }
 
-
-
 .sidebar {
     background-color: #f8f8f8;
     height: 100vh;
@@ -101,11 +99,11 @@ h3 {
 		<div class="container-fluid">
 		  <div class="navbar-header">
 			<a class="navbar-brand" href="#">
-			  <span id="logo">CRM</span>
+			  <span id="logo">CP</span>
 			</a>
 		  </div>
 		  <div class="title">
-			<h3>Customer Relationship Manager</h3>
+			<h3>Client Panel</h3>
 			<form:form action="${pageContext.request.contextPath}/logout" 
 					   method="POST"
 					   id="logout">
@@ -126,14 +124,6 @@ h3 {
 		</div>
 		<div class="col-xs-9 main">	
 			<!--  add a search box -->
-
-
-			<form:form action="search" method="POST" class="input-group search">
-				<input type="text" class="form-control" placeholder="Search customer" name="theSearchName">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button">Go!</button>
-				</span>
-			</form:form>
 	
 		
 		<div class="table-container">
@@ -145,31 +135,18 @@ h3 {
 				<!-- Table -->
 				<table class="table">
 						<tr>
-							<th>customerID</th>
-							<th>First Name</th>
-							<th>Last Name</th>
-							<th>Country</th>
-							<th>Action</th>
+							<th>Amount</th>
+							<th>Account Number Sender</th>
+							<th>Account Number Receiver</th>
 						</tr>
 						
 						<!-- loop over customers -->
-						<c:forEach var="tempCustomer" items="${customers}">
-						
-						<!-- construct an "update" link with customer id -->
-							<c:url var="updateLink" value="/customer/showFormForUpdate">
-								<c:param name="customerID" value="${tempCustomer.customerID}" />
-							</c:url>
-						
-						<!-- construct an "delete" link with customer id -->
-							<c:url var="deleteLink" value="/customer/delete">
-								<c:param name="customerID" value="${tempCustomer.customerID}" />
-							</c:url>
+						<c:forEach var="tempOrderItems" items="${orderItems}">
 						
 						<tr>
-							<td>${tempCustomer.customerID}</td>
-							<td>${tempCustomer.firstName}</td>
-							<td>${tempCustomer.lastName}</td>
-							<td>${tempCustomer.country}</td>
+							<td>${tempOrderItems.amount}</td>
+							<td>${tempOrderItems.accountNumberSender}</td>
+							<td>${tempOrderItems.accountNumberReceiver}</td>
 							
 							<td>
 							<!-- display the update link -->

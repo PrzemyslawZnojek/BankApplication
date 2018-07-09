@@ -40,11 +40,6 @@
 				   class="add-button"
 			/>
 			
-			<input type="button" value="Make Transfer"
-				   onclick="window.location.href='makeTransfer'; return false;"
-				   class="add-button"
-			/>
-			
 			<!--  add a search box -->
             <form:form action="search" method="POST">
                 Search customer: <input type="text" name="theSearchName" />

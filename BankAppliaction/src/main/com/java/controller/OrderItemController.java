@@ -1,5 +1,7 @@
 package main.com.java.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import main.com.java.entity.Account;
+import main.com.java.entity.Customer;
 import main.com.java.entity.OrderItem;
 import main.com.java.service.OrderItemService;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/user")
 public class OrderItemController {
 	
 	//need to inject customerService
@@ -40,6 +43,18 @@ public class OrderItemController {
 		orderItemService.saveTransfer(theOrderItem, account, Send, Rec, amount);
 		
 		return "redirect:/customer/list";
+	}
+	
+	@RequestMapping("/panel")
+	public String listCustomers(Model theModel) {
+		
+		// get customer from Service
+		List<OrderItem> theOrderItems = orderItemService.getOrderItems();
+		
+		// add customer to the model
+		theModel.addAttribute("orderItems", theOrderItems);
+		
+		return "indexUser";
 	}
 
 }
