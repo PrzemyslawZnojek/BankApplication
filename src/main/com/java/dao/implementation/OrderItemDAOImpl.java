@@ -1,4 +1,4 @@
-package main.com.java.daoimpl;
+package main.com.java.dao.implementation;
 
 import java.util.List;
 

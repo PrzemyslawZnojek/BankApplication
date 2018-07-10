@@ -1,4 +1,4 @@
-package main.com.java.service;
+package main.com.java.service.implementation;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import main.com.java.dao.OrderItemDAO;
 import main.com.java.entity.Account;
 import main.com.java.entity.OrderItem;
+import main.com.java.service.OrderItemService;
 
 @Service
 public class OrderItemServiceImpl implements OrderItemService {
