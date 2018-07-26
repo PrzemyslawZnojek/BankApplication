@@ -130,10 +130,6 @@ h3 {
 			<table>
 				<tbody>
 				
-					<tr>
-						<td><label>ID:</label></td>
-						<td><form:input path="customerID" /></td>
-					</tr>
 					
 					<tr>
 						<td><label>First name:</label></td>

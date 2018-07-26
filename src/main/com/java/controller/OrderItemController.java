@@ -20,14 +20,12 @@ import main.com.java.service.domain.interfaces.OrderItemService;
 @RequestMapping("/user")
 public class OrderItemController {
 	
-	//need to inject customerService
 	@Autowired
 	private OrderItemService orderItemService;
 	
 	@GetMapping("/makeTransfer")
 	public String makeTransfer(Model theModel){
 		
-		//create model attribute to find
 		OrderItem theOrderItem = new OrderItem();
 		
 		theModel.addAttribute("orderitem", theOrderItem);
@@ -36,24 +34,19 @@ public class OrderItemController {
 	}
 	
 	@PostMapping("/saveTransfer")
-	public String saveTransfer(@ModelAttribute("orderitem") OrderItem theOrderItem, @ModelAttribute("account") Account account,
-			@RequestParam("accountNumberSender") String Send, @RequestParam("accountNumberReceiver") String Rec, @RequestParam("amount") long amount) {
-		
-		// save the customer using our service
+	public String saveTransfer(@ModelAttribute("orderitem") OrderItem theOrderItem, 
+			@ModelAttribute("account") Account account,
+			@RequestParam("accountNumberSender") String Send, 
+			@RequestParam("accountNumberReceiver") String Rec, 
+			@RequestParam("amount") long amount) {		
 		orderItemService.saveTransfer(theOrderItem, account, Send, Rec, amount);
-		
 		return "redirect:/customer/list";
 	}
 	
 	@RequestMapping("/panel")
-	public String listCustomers(Model theModel) {
-		
-		// get customer from Service
-		List<OrderItem> theOrderItems = orderItemService.getOrderItems();
-		
-		// add customer to the model
-		theModel.addAttribute("orderItems", theOrderItems);
-		
+	public String listCustomers(Model theModel) {		
+		List<OrderItem> theOrderItems = orderItemService.getOrderItems();	
+		theModel.addAttribute("orderItems", theOrderItems);		
 		return "indexUser";
 	}
 
