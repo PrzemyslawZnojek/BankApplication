@@ -1,7 +1,7 @@
-package main.com.java.service.implementation;
+package main.com.java.service.domain.implementation;
 
 import main.com.java.entity.Account;
-import main.com.java.service.UsersService;
+import main.com.java.service.domain.interfaces.UsersService;
 
 public class UsersServiceImpl implements UsersService {
 

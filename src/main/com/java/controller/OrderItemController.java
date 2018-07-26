@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import main.com.java.entity.Account;
 import main.com.java.entity.Customer;
 import main.com.java.entity.OrderItem;
-import main.com.java.service.OrderItemService;
+import main.com.java.service.domain.interfaces.OrderItemService;
 
 @Controller
 @RequestMapping("/user")

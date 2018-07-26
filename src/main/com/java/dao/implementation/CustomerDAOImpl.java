@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import main.com.java.dao.CustomerDAO;
+import main.com.java.dao.interfaces.CustomerDAO;
 import main.com.java.entity.Account;
 import main.com.java.entity.Customer;
 

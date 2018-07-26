@@ -1,8 +1,7 @@
-package main.com.java.service;
+package main.com.java.service.domain.interfaces;
 
 import java.util.List;
 
-import main.com.java.entity.Account;
 import main.com.java.entity.Customer;
 
 public interface CustomerService {

@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import main.com.java.dao.UsersDAO;
+import main.com.java.dao.interfaces.UsersDAO;
 import main.com.java.entity.Users;
 
 @Repository

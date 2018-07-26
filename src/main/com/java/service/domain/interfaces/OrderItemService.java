@@ -1,4 +1,4 @@
-package main.com.java.service;
+package main.com.java.service.domain.interfaces;
 
 import java.util.List;
 

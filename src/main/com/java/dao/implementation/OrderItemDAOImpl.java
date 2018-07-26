@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import main.com.java.dao.OrderItemDAO;
+import main.com.java.dao.interfaces.OrderItemDAO;
 import main.com.java.entity.Account;
 import main.com.java.entity.Customer;
 import main.com.java.entity.OrderItem;

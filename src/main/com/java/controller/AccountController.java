@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import main.com.java.entity.Account;
 import main.com.java.entity.Customer;
-import main.com.java.service.AccountService;
+import main.com.java.service.domain.interfaces.AccountService;
 
 @Controller
 @RequestMapping("/customer")
