@@ -8,6 +8,8 @@ import main.com.java.dao.interfaces.AccountDAO;
 import main.com.java.entity.Account;
 import main.com.java.service.domain.interfaces.AccountService;
 
+import java.util.List;
+
 @Service
 public class AccountServiceImpl implements AccountService {
 	
@@ -21,5 +23,11 @@ public class AccountServiceImpl implements AccountService {
 		accountDAO.addAccount(theAccount);
 		
 	}
+
+	@Override
+	@Transactional
+	public List<String> getAccountNumberList(){
+	    return accountDAO.getAccountNumberList();
+    }
 
 }

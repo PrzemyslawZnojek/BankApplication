@@ -85,5 +85,12 @@ public class AccountDAOImpl implements AccountDAO{
 		currentSession.clear();
 	}
 
+	@Override
+	public List<String> getAccountNumberList(){
+	    Query<String> theQuery = createCurrentSession(sessionFactory).createQuery("SELECT Account.accountNumber FROM Account", String.class);
+		List<String> accountNumberList = theQuery.getResultList();
+		return accountNumberList;
+	}
+
 	
 }
