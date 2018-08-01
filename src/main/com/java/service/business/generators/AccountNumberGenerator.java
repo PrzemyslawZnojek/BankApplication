@@ -8,14 +8,15 @@ import java.util.Random;
 
 public class AccountNumberGenerator {
 
-    private static String generateAccountNumber(){
+    public static String generateAccountNumber(){
         String potentialAccountNumber = generatePotentialAccountNumber();
         if(checkIsAccountNumberIsFree(potentialAccountNumber)){
-            return potentialAccountNumber;
+           return potentialAccountNumber;
         }else{
             while(checkIsAccountNumberIsFree(potentialAccountNumber)){
-                return generatePotentialAccountNumber();
+                potentialAccountNumber = generatePotentialAccountNumber();
             }
+            return generatePotentialAccountNumber();
         }
     }
 
@@ -28,7 +29,8 @@ public class AccountNumberGenerator {
         StringBuilder stringBuilder = new StringBuilder(accountNumber);
         stringBuilder.append(checksum).append(bankNumber).append(clientNumber);
 
-        return accountNumber;
+
+        return stringBuilder.toString();
     };
 
     private static boolean checkIsAccountNumberIsFree(String potentialAccountNumber){

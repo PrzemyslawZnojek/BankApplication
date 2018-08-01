@@ -1,7 +1,7 @@
 package main.com.java.controller;
 
-import java.util.List;
 
+import main.com.java.service.business.generators.AccountNumberGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,9 +33,9 @@ public class AccountController {
 	
 	@PostMapping("/saveAccount")
 	public String saveAccount(@ModelAttribute("account") Account theAccount) {
+		theAccount.setAccountNumber(AccountNumberGenerator.generateAccountNumber());
 
 		accountService.addAccount(theAccount);
-		
 		return "redirect:/customer/list";
 	}
 }

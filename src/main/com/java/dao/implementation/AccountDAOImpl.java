@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.com.java.dao.interfaces.AccountDAO;
-import main.com.java.entity.Account;;
+import main.com.java.entity.Account;;import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 @Repository
 public class AccountDAOImpl implements AccountDAO{
@@ -87,9 +89,14 @@ public class AccountDAOImpl implements AccountDAO{
 
 	@Override
 	public List<String> getAccountNumberList(){
-	    Query<String> theQuery = createCurrentSession(sessionFactory).createQuery("SELECT Account.accountNumber FROM Account", String.class);
-		List<String> accountNumberList = theQuery.getResultList();
-		return accountNumberList;
+	    System.out.print("AccountDAOImpl");
+		CriteriaBuilder builder = createCurrentSession(sessionFactory).getCriteriaBuilder();
+		CriteriaQuery<String> query = builder.createQuery(String.class);
+		Root<Account> root = query.from(Account.class);
+		query.select(root.get("accountNumber"));
+	    Query<String> theQuery = createCurrentSession(sessionFactory).createQuery(query);
+
+		return theQuery.getResultList();
 	}
 
 	

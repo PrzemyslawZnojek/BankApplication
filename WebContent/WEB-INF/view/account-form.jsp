@@ -141,11 +141,6 @@ h3 {
 					</tr>
 					
 					<tr>
-						<td><label>AccountNumber:</label></td>
-						<td><form:input path="accountNumber" /></td>
-					</tr>
-					
-					<tr>
 						<td><label>Username:</label></td>
 						<td><form:input path="username" /></td>
 					</tr>

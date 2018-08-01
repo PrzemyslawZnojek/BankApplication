@@ -19,14 +19,13 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	@Transactional
 	public void addAccount(Account theAccount) {
-		
 		accountDAO.addAccount(theAccount);
-		
 	}
 
 	@Override
 	@Transactional
 	public List<String> getAccountNumberList(){
+		System.out.print("AccountServiceImpl");
 	    return accountDAO.getAccountNumberList();
     }
 
