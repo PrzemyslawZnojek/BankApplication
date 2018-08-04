@@ -1,14 +1,21 @@
 package main.com.java.service.business.generators;
 
-import main.com.java.service.domain.implementation.AccountServiceImpl;
 import main.com.java.service.domain.interfaces.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Random;
 
+@Service
 public class AccountNumberGenerator {
 
-    public static String generateAccountNumber(){
+    @Autowired
+    AccountService accountService;
+
+    @Transactional
+    public String generateAccountNumber(){
         String potentialAccountNumber = generatePotentialAccountNumber();
         if(checkIsAccountNumberIsFree(potentialAccountNumber)){
            return potentialAccountNumber;
@@ -20,7 +27,7 @@ public class AccountNumberGenerator {
         }
     }
 
-    private static String generatePotentialAccountNumber(){
+    private String generatePotentialAccountNumber(){
         String checksum = generateChecksum();
         String bankNumber = "12853321";
         String clientNumber = generateClientNumber();
@@ -33,8 +40,8 @@ public class AccountNumberGenerator {
         return stringBuilder.toString();
     };
 
-    private static boolean checkIsAccountNumberIsFree(String potentialAccountNumber){
-        AccountService accountService = new AccountServiceImpl();
+
+    private  boolean checkIsAccountNumberIsFree(String potentialAccountNumber){
         List<String> occupiedAccountNumberList = accountService.getAccountNumberList();
         for (String occupiedAccountNumber : occupiedAccountNumberList) {
             if(potentialAccountNumber.equals(occupiedAccountNumber)){
@@ -57,7 +64,7 @@ public class AccountNumberGenerator {
         return checksum;
     };
 
-    private static String generateClientNumber(){
+    private String generateClientNumber(){
         Random random = new Random();
         String clientNumber = "";
         StringBuilder stringBuilder = new StringBuilder(clientNumber);

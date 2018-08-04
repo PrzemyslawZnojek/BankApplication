@@ -89,9 +89,10 @@ public class AccountDAOImpl implements AccountDAO{
 
 	@Override
 	public List<String> getAccountNumberList(){
-	    System.out.print("AccountDAOImpl");
-		CriteriaBuilder builder = createCurrentSession(sessionFactory).getCriteriaBuilder();
+
+		CriteriaBuilder builder = sessionFactory.getCurrentSession().getCriteriaBuilder();
 		CriteriaQuery<String> query = builder.createQuery(String.class);
+        System.out.print("query = " + query);
 		Root<Account> root = query.from(Account.class);
 		query.select(root.get("accountNumber"));
 	    Query<String> theQuery = createCurrentSession(sessionFactory).createQuery(query);

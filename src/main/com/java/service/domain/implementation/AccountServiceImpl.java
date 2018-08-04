@@ -12,9 +12,9 @@ import java.util.List;
 
 @Service
 public class AccountServiceImpl implements AccountService {
-	
-	@Autowired
-	private AccountDAO accountDAO;
+
+    @Autowired
+    AccountDAO accountDAO;
 
 	@Override
 	@Transactional
@@ -23,7 +23,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	@Transactional
+    @Transactional
 	public List<String> getAccountNumberList(){
 		System.out.print("AccountServiceImpl");
 	    return accountDAO.getAccountNumberList();

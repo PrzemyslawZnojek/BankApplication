@@ -33,7 +33,8 @@ public class AccountController {
 	
 	@PostMapping("/saveAccount")
 	public String saveAccount(@ModelAttribute("account") Account theAccount) {
-		theAccount.setAccountNumber(AccountNumberGenerator.generateAccountNumber());
+		AccountNumberGenerator accountNumberGenerator = new AccountNumberGenerator();
+		theAccount.setAccountNumber(accountNumberGenerator.generateAccountNumber());
 
 		accountService.addAccount(theAccount);
 		return "redirect:/customer/list";
