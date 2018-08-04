@@ -20,9 +20,13 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 public class SecurityConfig 
 					extends WebSecurityConfigurerAdapter {
 
+	private final DataSource securityDataSource;
+
 	@Autowired
-	private DataSource securityDataSource;
-	
+	public SecurityConfig(DataSource securityDataSource) {
+		this.securityDataSource = securityDataSource;
+	}
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		

@@ -19,9 +19,13 @@ import main.com.java.service.domain.interfaces.CustomerService;
 public class CustomerController {
 	
 	//need to inject customerService
+	private final CustomerService customerService;
+
 	@Autowired
-	private CustomerService customerService;
-	
+	public CustomerController(CustomerService customerService) {
+		this.customerService = customerService;
+	}
+
 	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model theModel) {
 		

@@ -17,9 +17,13 @@ import main.com.java.entity.OrderItem;
 @Repository
 public class OrderItemDAOImpl implements OrderItemDAO{
 
+	private final SessionFactory sessionFactory;
+
 	@Autowired
-	private SessionFactory sessionFactory;
-	
+	public OrderItemDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	public Session createCurrentSession(SessionFactory sf){
 		Session session = sf.getCurrentSession();
 		

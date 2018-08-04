@@ -15,8 +15,12 @@ import main.com.java.service.domain.interfaces.OrderItemService;
 @Service
 public class OrderItemServiceImpl implements OrderItemService {
 
+	private final OrderItemDAO orderItemDAO;
+
 	@Autowired
-	private OrderItemDAO orderItemDAO;
+	public OrderItemServiceImpl(OrderItemDAO orderItemDAO) {
+		this.orderItemDAO = orderItemDAO;
+	}
 
 	@Override
 	@Transactional

@@ -4,22 +4,24 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.com.java.dao.interfaces.CustomerDAO;
-import main.com.java.entity.Account;
 import main.com.java.entity.Customer;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO{
 
+	private final SessionFactory sessionFactory;
+
 	@Autowired
-	private SessionFactory sessionFactory;
-	
+	public CustomerDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	public Session createCurrentSession(SessionFactory sf){
 		Session session = sf.getCurrentSession();
 		

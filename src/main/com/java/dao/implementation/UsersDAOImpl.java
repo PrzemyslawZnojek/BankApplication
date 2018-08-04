@@ -11,9 +11,13 @@ import main.com.java.entity.Users;
 @Repository
 public class UsersDAOImpl implements UsersDAO {
 
+	private final SessionFactory sessionFactory;
+
 	@Autowired
-	private SessionFactory sessionFactory;
-	
+	public UsersDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	@Override
 	public Session createCurrentSession(SessionFactory sf) {
 		Session session = sf.getCurrentSession();

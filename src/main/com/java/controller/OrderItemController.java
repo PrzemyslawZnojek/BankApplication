@@ -20,9 +20,13 @@ import main.com.java.service.domain.interfaces.OrderItemService;
 @RequestMapping("/user")
 public class OrderItemController {
 	
+	private final OrderItemService orderItemService;
+
 	@Autowired
-	private OrderItemService orderItemService;
-	
+	public OrderItemController(OrderItemService orderItemService) {
+		this.orderItemService = orderItemService;
+	}
+
 	@GetMapping("/makeTransfer")
 	public String makeTransfer(Model theModel){
 		

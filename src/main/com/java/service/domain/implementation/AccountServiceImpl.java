@@ -13,8 +13,12 @@ import java.util.List;
 @Service
 public class AccountServiceImpl implements AccountService {
 
-    @Autowired
-    AccountDAO accountDAO;
+    private AccountDAO accountDAO;
+
+	@Autowired
+    public AccountServiceImpl(AccountDAO accountDAO){
+    	this.accountDAO=accountDAO;
+	}
 
 	@Override
 	@Transactional

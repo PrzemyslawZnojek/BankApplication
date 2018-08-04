@@ -1,20 +1,23 @@
 package main.com.java.service.business.generators;
 
+import main.com.java.entity.Account;
 import main.com.java.service.domain.interfaces.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Random;
 
-@Service
+@Component
 public class AccountNumberGenerator {
 
-    @Autowired
-    AccountService accountService;
+    private AccountService accountService;
 
-    @Transactional
+    @Autowired
+    public AccountNumberGenerator(AccountService accountService){
+        this.accountService=accountService;
+    }
+
     public String generateAccountNumber(){
         String potentialAccountNumber = generatePotentialAccountNumber();
         if(checkIsAccountNumberIsFree(potentialAccountNumber)){

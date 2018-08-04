@@ -11,15 +11,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import main.com.java.entity.Account;
-import main.com.java.service.domain.implementation.AccountServiceImpl;
 import main.com.java.service.domain.interfaces.AccountService;
 
 @Controller
 @RequestMapping("/customer")
 public class AccountController {
-	
+
+
+	private AccountService accountService;
+	private AccountNumberGenerator accountNumberGenerator;
+
 	@Autowired
-	private AccountService accountService = new AccountServiceImpl();
+	public AccountController(AccountService accountService,AccountNumberGenerator accountNumberGenerator){
+		this.accountService = accountService;
+		this.accountNumberGenerator = accountNumberGenerator;
+	}
+
 
 	@GetMapping("/showFormForAddAccount")
 	public String showFormForAddAccount(Model theModel){
@@ -33,7 +40,6 @@ public class AccountController {
 	
 	@PostMapping("/saveAccount")
 	public String saveAccount(@ModelAttribute("account") Account theAccount) {
-		AccountNumberGenerator accountNumberGenerator = new AccountNumberGenerator();
 		theAccount.setAccountNumber(accountNumberGenerator.generateAccountNumber());
 
 		accountService.addAccount(theAccount);

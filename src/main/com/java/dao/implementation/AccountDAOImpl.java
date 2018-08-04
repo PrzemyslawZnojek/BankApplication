@@ -10,16 +10,21 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.com.java.dao.interfaces.AccountDAO;
-import main.com.java.entity.Account;;import javax.persistence.criteria.CriteriaBuilder;
+import main.com.java.entity.Account;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 @Repository
 public class AccountDAOImpl implements AccountDAO{
 
+	private final SessionFactory sessionFactory;
+
 	@Autowired
-	private SessionFactory sessionFactory;
-	
+	public AccountDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	public Session createCurrentSession(SessionFactory sessionFactory){
 		Session session = sessionFactory.getCurrentSession();
 		return session;

@@ -14,8 +14,12 @@ import main.com.java.service.domain.interfaces.CustomerService;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 	
+	private final CustomerDAO customerDAO;
+
 	@Autowired
-	private CustomerDAO customerDAO;
+	public CustomerServiceImpl(CustomerDAO customerDAO) {
+		this.customerDAO = customerDAO;
+	}
 
 	@Override
 	@Transactional
