@@ -1,6 +1,7 @@
 package main.com.java.controller;
 
 
+import main.com.java.entity.RegisterObject;
 import main.com.java.service.business.generators.AccountNumberGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ public class AccountController {
 
 	private AccountService accountService;
 	private AccountNumberGenerator accountNumberGenerator;
+	private RegisterObject registerObject = new RegisterObject();
 
 	@Autowired
 	public AccountController(AccountService accountService,AccountNumberGenerator accountNumberGenerator){
@@ -31,15 +33,15 @@ public class AccountController {
 	@GetMapping("/showFormForAddAccount")
 	public String showFormForAddAccount(Model theModel){
 
-		Account theAccount = new Account();
+
 		
-		theModel.addAttribute("account", theAccount);
+		theModel.addAttribute("registerObject", registerObject);
 		
 		return "account-form";
 	}
 	
 	@PostMapping("/saveAccount")
-	public String saveAccount(@ModelAttribute("account") Account theAccount) {
+	public String saveAccount(@ModelAttribute("registerObject") Account theAccount) {
 		theAccount.setAccountNumber(accountNumberGenerator.generateAccountNumber());
 
 		accountService.addAccount(theAccount);

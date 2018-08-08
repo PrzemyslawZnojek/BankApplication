@@ -1,5 +1,7 @@
 package main.com.java.entity;
 
+import javax.persistence.Entity;
+
 public class RegisterObject {
 
     private Account account;
