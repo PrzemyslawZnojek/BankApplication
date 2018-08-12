@@ -119,10 +119,7 @@
 
 	<div class="table-container">
 
-
-
 		<form:form action="saveAccount" modelAttribute="registerObject" method="POST">
-
 
 			<!-- need to associate this data with customer id -->
 			<form:hidden path="account.accountID" />
@@ -156,6 +153,11 @@
 				</tr>
 
 				<tr>
+					<td><label>User Enable:</label></td>
+					<td><form:input path="users.enabled" /></td>
+				</tr>
+
+				<tr>
 					<td><label></label></td>
 					<td><input type="submit" value="Save" class="save" /></td>
 				</tr>
@@ -176,6 +178,7 @@
 </div>
 
 </body>
+
 
 </html>
 

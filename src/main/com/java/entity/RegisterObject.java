@@ -1,12 +1,18 @@
 package main.com.java.entity;
 
-import javax.persistence.Entity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class RegisterObject {
 
+    @Autowired
     private Account account;
     private Customer customer;
     private Users users;
+
+
 
     public Account getAccount() {
         return account;
