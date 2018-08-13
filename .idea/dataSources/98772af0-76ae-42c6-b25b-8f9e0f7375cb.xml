@@ -1058,7 +1058,6 @@ authority</ColNames>
       <RefSchemaName>bank_application</RefSchemaName>
       <RefTableName>account</RefTableName>
       <RefColNames>accountID</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <column id="259" parent="235" name="orderItemID">
       <Position>1</Position>

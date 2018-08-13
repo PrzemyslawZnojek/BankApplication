@@ -37,7 +37,6 @@ public class Account {
 	@OneToOne(mappedBy="account", cascade=CascadeType.ALL)
 	private Users users;
 
-
 	@OneToMany(mappedBy="senderAccount")
     private Collection<OrderItem> payers;
 
@@ -46,13 +45,13 @@ public class Account {
 
 	public Account() {}
 
-	public Account(long balance, String accountNumber, String password, String username, Boolean admin) {
-		this.balance = balance;
-		this.accountNumber = accountNumber;
-		this.username = username;
-	}
+    public Account(long balance, String accountNumber, String username) {
+        this.balance = balance;
+        this.accountNumber = accountNumber;
+        this.username = username;
+    }
 
-	public long getAccountID() {
+    public long getAccountID() {
 		return accountID;
 	}
 
@@ -78,7 +77,47 @@ public class Account {
 		this.customer = customer;
 	}
 
-	@Override
+    public void setAccountID(long accountID) {
+        this.accountID = accountID;
+    }
+
+    public void setBalance(long balance) {
+        this.balance = balance;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public Collection<OrderItem> getPayers() {
+        return payers;
+    }
+
+    public void setPayers(Collection<OrderItem> payers) {
+        this.payers = payers;
+    }
+
+    public Collection<OrderItem> getReceivers() {
+        return receivers;
+    }
+
+    public void setReceivers(Collection<OrderItem> receivers) {
+        this.receivers = receivers;
+    }
+
+    @Override
 	public String toString() {
 		return "Account [accountID=" + accountID + ", balance=" + balance
 				+ ", accountNumber=" + accountNumber + ", username=" + username + ", customer=" + customer + "]";

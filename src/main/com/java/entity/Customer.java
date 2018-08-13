@@ -56,7 +56,28 @@ public class Customer {
     public void setIdOfAccount(long idOfAccount) { this.idOfAccount = idOfAccount;}
     public void setAccount(Account account) { this.account = account; }
 
-    @Override
+
+	public void setCustomerID(long customerID) {
+		this.customerID = customerID;
+	}
+
+	public long getIdOfAccount() {
+		return idOfAccount;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	@Override
     public String toString() {
         return "Customer [customerID=" + customerID + ", firstName=" + firstName + ", lastName=" + lastName
                 + ", country=" + country + "]";

@@ -22,13 +22,11 @@ import main.com.java.service.domain.interfaces.UsersService;
 @RequestMapping("/customer")
 public class AccountController {
 
-
 	private AccountService accountService;
     private CustomerService customerService;
     private UsersService usersService;
     private PasswordGenerator passwordGenerator;
     private AccountNumberGenerator accountNumberGenerator;
-    private RegisterObject registerObject;
 
     @Autowired
     public AccountController(AccountService accountService, CustomerService customerService, UsersService usersService, PasswordGenerator passwordGenerator, AccountNumberGenerator accountNumberGenerator) {
@@ -40,11 +38,9 @@ public class AccountController {
     }
 
 
-
-
-
 	@GetMapping("/showFormForAddAccount")
 	public String showFormForAddAccount(Model theModel){
+		RegisterObject registerObject = new RegisterObject(new Account(), new Customer(), new Users());
 		theModel.addAttribute("registerObject", registerObject);
 		
 		return "account-form";
@@ -59,7 +55,9 @@ public class AccountController {
 		registerObject.getUsers().setEnabled(true);
         accountService.addAccount(registerObject.getAccount());
 		usersService.addUser(registerObject.getUsers());
+        System.out.print("Maybe here 1");
 		customerService.addCustomer(registerObject.getCustomer());
+		System.out.print("Maybe here 2");
 
 		return "redirect:/customer/list";
 	}

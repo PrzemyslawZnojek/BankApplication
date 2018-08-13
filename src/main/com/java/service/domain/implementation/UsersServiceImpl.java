@@ -5,6 +5,7 @@ import main.com.java.entity.Users;
 import main.com.java.service.domain.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -16,6 +17,7 @@ public class UsersServiceImpl implements UsersService {
 
 
     @Override
+    @Transactional
     public void addUser(Users theUser) {
         usersDAO.addUsers(theUser);
     }
