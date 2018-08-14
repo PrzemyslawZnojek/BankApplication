@@ -16,7 +16,7 @@ public class Users {
 	@Column(name="enabled")
 	private boolean enabled;
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name="username", insertable = false, updatable = false)
 	private Account account;
 

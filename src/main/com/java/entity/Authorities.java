@@ -22,7 +22,7 @@ public class Authorities {
 	@Column(name="username")
 	private String username;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name="username", insertable = false, updatable = false)
 	private Users users;
 }

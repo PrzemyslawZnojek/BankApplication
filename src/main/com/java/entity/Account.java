@@ -31,10 +31,10 @@ public class Account {
 	@Column(name="username")
 	private String username;
 
-	@OneToOne(mappedBy="account", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="account")
 	private Customer customer;
 
-	@OneToOne(mappedBy="account", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="account")
 	private Users users;
 
 	@OneToMany(mappedBy="senderAccount")

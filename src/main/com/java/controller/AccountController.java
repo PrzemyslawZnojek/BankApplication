@@ -50,14 +50,12 @@ public class AccountController {
 	public String saveAccount(@ModelAttribute("registerObject") RegisterObject registerObject) {
 		registerObject.getAccount().setAccountNumber(accountNumberGenerator.generateAccountNumber());
 		registerObject.getUsers().setPassword(passwordGenerator.generatePassword());
-		registerObject.getCustomer().setIdOfAccount(registerObject.getAccount().getAccountID());
 		registerObject.getUsers().setUsername(registerObject.getAccount().getUsername());
 		registerObject.getUsers().setEnabled(true);
-        accountService.addAccount(registerObject.getAccount());
+		accountService.addAccount(registerObject.getAccount());
 		usersService.addUser(registerObject.getUsers());
-        System.out.print("Maybe here 1");
+		registerObject.getCustomer().setIdOfAccount(registerObject.getAccount().getAccountID());
 		customerService.addCustomer(registerObject.getCustomer());
-		System.out.print("Maybe here 2");
 
 		return "redirect:/customer/list";
 	}

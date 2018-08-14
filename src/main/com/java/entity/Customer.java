@@ -24,7 +24,7 @@ public class Customer {
 	@Column(name="country")
 	private String country;
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name="idOfAccount", insertable = false, updatable = false)
 	private Account account;
 
