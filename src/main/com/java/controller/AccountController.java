@@ -3,6 +3,7 @@ package main.com.java.controller;
 import main.com.java.entity.Account;
 import main.com.java.entity.Customer;
 import main.com.java.entity.Users;
+import main.com.java.service.business.registerObject.RegisterObjectImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,21 +43,13 @@ public class AccountController {
 	public String showFormForAddAccount(Model theModel){
 		RegisterObject registerObject = new RegisterObject(new Account(), new Customer(), new Users());
 		theModel.addAttribute("registerObject", registerObject);
-		
 		return "account-form";
 	}
 	
 	@PostMapping("/saveAccount")
 	public String saveAccount(@ModelAttribute("registerObject") RegisterObject registerObject) {
-		registerObject.getAccount().setAccountNumber(accountNumberGenerator.generateAccountNumber());
-		registerObject.getUsers().setPassword(passwordGenerator.generatePassword());
-		registerObject.getUsers().setUsername(registerObject.getAccount().getUsername());
-		registerObject.getUsers().setEnabled(true);
-		accountService.addAccount(registerObject.getAccount());
-		usersService.addUser(registerObject.getUsers());
-		registerObject.getCustomer().setIdOfAccount(registerObject.getAccount().getAccountID());
-		customerService.addCustomer(registerObject.getCustomer());
-
+		RegisterObjectImpl registerObjectImpl = new RegisterObjectImpl(accountService,customerService,usersService,passwordGenerator,accountNumberGenerator,registerObject);
+		registerObjectImpl.insertIntoThreeTablesByOneSubmit();
 		return "redirect:/customer/list";
 	}
 }
