@@ -13,6 +13,13 @@ public class PasswordGenerator {
 
     private static SecureRandom random = new SecureRandom();
 
+    public String returnPasswordWithEncryption(){
+        String unencryptedPassword = generatePassword();
+        StringBuilder buildEncryptedPassword = new StringBuilder(unencryptedPassword);
+        buildEncryptedPassword.insert(0,"{noop}");
+        return buildEncryptedPassword.toString();
+    }
+
     public String generatePassword(){
         String password = "";
         int lenghtOfPassword = 8;
