@@ -1,14 +1,23 @@
 package main.com.java.service.domain.implementation;
 
-import main.com.java.entity.Account;
+import main.com.java.dao.interfaces.AuthoritiesDAO;
+import main.com.java.entity.Authorities;
 import main.com.java.service.domain.interfaces.AuthoritiesService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class AuthoritiesServiceImpl implements AuthoritiesService {
 
-	@Override
-	public void addAccount(Account theAccount) {
-		// TODO Auto-generated method stub
+    private final AuthoritiesDAO authoritiesDAO;
 
+    @Autowired
+    public AuthoritiesServiceImpl(AuthoritiesDAO authoritiesDAO) { this.authoritiesDAO = authoritiesDAO; }
+
+    @Override
+    @Transactional
+	public void addAuthorities(Authorities authorities) {
+        authoritiesDAO.addAuthorities(authorities);
 	}
-
 }

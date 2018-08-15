@@ -152,19 +152,20 @@
 					<td><form:input path="customer.country" /></td>
 				</tr>
 
-				<%--<tr>--%>
-					<%--<td><label>User Enable:</label></td>--%>
-					<%--<td><form:input path="users.enabled" /></td>--%>
-				<%--</tr>--%>
-
 				<tr>
 					<td><label>User Enable:</label></td>
 					<td><form:select path="users.enabled">
 						<form:options items="${enable}" />
 					</form:select>
 					</td>
+				</tr>
 
-					
+				<tr>
+					<td><label>User Role:</label></td>
+					<td><form:select path="authorities.authority">
+						<form:options items="${role}" />
+					</form:select>
+					</td>
 				</tr>
 
 				<tr>

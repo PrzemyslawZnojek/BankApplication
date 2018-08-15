@@ -1,9 +1,9 @@
 package main.com.java.service.domain.interfaces;
 
-import main.com.java.entity.Account;
+import main.com.java.entity.Authorities;
 
 public interface AuthoritiesService {
 
-	public void addAccount(Account theAccount);
+	public void addAuthorities(Authorities authorities);
 
 }
