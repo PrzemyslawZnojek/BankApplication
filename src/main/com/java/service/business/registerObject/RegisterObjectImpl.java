@@ -69,6 +69,5 @@ public class RegisterObjectImpl {
     private void updateUserObject(){
         registerObject.getUsers().setPassword(passwordGenerator.generatePassword());
         registerObject.getUsers().setUsername(registerObject.getAccount().getUsername());
-        registerObject.getUsers().setEnabled(true);
     }
 }

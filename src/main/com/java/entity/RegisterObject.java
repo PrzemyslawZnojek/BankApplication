@@ -5,6 +5,7 @@ public class RegisterObject {
     private Account account;
     private Customer customer;
     private Users users;
+    
 
     public RegisterObject() {
     }

@@ -152,9 +152,19 @@
 					<td><form:input path="customer.country" /></td>
 				</tr>
 
+				<%--<tr>--%>
+					<%--<td><label>User Enable:</label></td>--%>
+					<%--<td><form:input path="users.enabled" /></td>--%>
+				<%--</tr>--%>
+
 				<tr>
 					<td><label>User Enable:</label></td>
-					<td><form:input path="users.enabled" /></td>
+					<td><form:select path="users.enabled">
+						<form:options items="${enable}" />
+					</form:select>
+					</td>
+
+					
 				</tr>
 
 				<tr>

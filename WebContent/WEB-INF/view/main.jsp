@@ -114,14 +114,9 @@ h3 {
 		  </div>
 		</div>
 	  </nav>
-		
-		<!-- new button: -->
+
 		<div class="col-xs-3 sidebar">
 			<div class="sidebar-container">
-				<input type="button" value="Add Customer"
-					onclick="window.location.href='showFormForAdd'; return false;"
-					class="btn btn-primary"
-				/>
 				
 				<input type="button" value="Add Account"
 					onclick="window.location.href='showFormForAddAccount'; return false;"

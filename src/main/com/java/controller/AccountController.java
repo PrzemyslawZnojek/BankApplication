@@ -19,6 +19,11 @@ import main.com.java.service.domain.interfaces.AccountService;
 import main.com.java.service.domain.interfaces.CustomerService;
 import main.com.java.service.domain.interfaces.UsersService;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/customer")
 public class AccountController {
@@ -51,5 +56,13 @@ public class AccountController {
 		RegisterObjectImpl registerObjectImpl = new RegisterObjectImpl(accountService,customerService,usersService,passwordGenerator,accountNumberGenerator,registerObject);
 		registerObjectImpl.insertIntoThreeTablesByOneSubmit();
 		return "redirect:/customer/list";
+	}
+
+	@ModelAttribute("enable")
+	public Map<String,String> getEnableList(){
+		Map<String,String> enableMap = new HashMap<>();
+		enableMap.put("True","true");
+		enableMap.put("False","false");
+		return enableMap;
 	}
 }
