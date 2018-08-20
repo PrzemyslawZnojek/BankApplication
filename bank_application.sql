@@ -1,1 +1,0 @@
-SELECT * FROM bank_application.orderitem;
