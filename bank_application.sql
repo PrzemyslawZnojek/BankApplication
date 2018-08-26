@@ -36,7 +36,7 @@ COLLATE = utf8_polish_ci;
 
 CREATE TABLE IF NOT EXISTS `bank_application`.`users` (
   `username` varchar(50)  CHARACTER SET 'utf8' COLLATE 'utf8_polish_ci' NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(68) NOT NULL,
   `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`username`),  
   CONSTRAINT `Users_ibfk_1` 
