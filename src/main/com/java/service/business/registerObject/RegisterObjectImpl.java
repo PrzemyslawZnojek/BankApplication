@@ -95,9 +95,6 @@ public class RegisterObjectImpl {
         private AccountNumberGenerator accountNumberGenerator;
         private RegisterObject registerObject;
 
-        public RegisteObjectBuilder() {
-        }
 
-        public RegisterObjectImpl
     }
 }
