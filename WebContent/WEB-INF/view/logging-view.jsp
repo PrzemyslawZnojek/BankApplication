@@ -91,7 +91,7 @@
 									<c:if test="${param.error != null}">
 										
 										<div class="alert alert-danger">
-											Invalid username and password.
+											Invalid username or password.
 										</div>
 		
 									</c:if>

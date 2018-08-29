@@ -50,8 +50,7 @@ public class SecurityConfig
 			.logout()
 			.permitAll();
 
-		http.sessionManagement().
-
+		http.sessionManagement().invalidSessionUrl("/showMyLoginPage");
 
 	}
 
