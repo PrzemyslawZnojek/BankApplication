@@ -1,2 +1,4 @@
 /build/
-/target//.idea/.idea/workspace.xml
+/target/
+/.idea/
+.idea/workspace.xml
