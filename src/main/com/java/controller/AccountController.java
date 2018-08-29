@@ -1,7 +1,7 @@
 package main.com.java.controller;
 
 import main.com.java.entity.*;
-import main.com.java.service.business.registerObject.RegisterObjectImpl;
+import main.com.java.service.business.registerObject.RegisterObjectService;
 import main.com.java.service.domain.interfaces.AuthoritiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,30 +44,46 @@ public class AccountController {
 	@GetMapping("/showFormForAddAccount")
 	public String showFormForAddAccount(Model theModel){
 		RegisterObject registerObject = new RegisterObject(new Account(), new Customer(), new Users(), new Authorities());
+
 		theModel.addAttribute("registerObject", registerObject);
+
 		return "account-form";
 	}
 	
 	@PostMapping("/saveAccount")
 	public String saveAccount(@ModelAttribute("registerObject") RegisterObject registerObject) {
-		RegisterObjectImpl registerObjectImpl = new RegisterObjectImpl(accountService,customerService,usersService,authoritiesService,passwordGenerator,accountNumberGenerator,registerObject);
-		registerObjectImpl.insertIntoThreeTablesByOneSubmit();
+		RegisterObjectService registerObjectService = new RegisterObjectService.RegisterObjectBuilder()
+				.usersService(usersService)
+				.customerService(customerService)
+				.accountService(accountService)
+				.authoritiesService(authoritiesService)
+				.accountNumberGenerator(accountNumberGenerator)
+				.passwordGenerator(passwordGenerator)
+				.registerObject(registerObject)
+				.build();
+
+		registerObjectService.insertIntoThreeTablesByOneSubmit();
+
 		return "redirect:/customer/list";
 	}
 
 	@ModelAttribute("enable")
 	public Map<String,String> getEnableMap(){
 		Map<String,String> enableMap = new HashMap<>();
+
 		enableMap.put("true", "True");
 		enableMap.put("false" ,"False");
+
 		return enableMap;
 	}
 
 	@ModelAttribute("role")
     public Map<String,String> getRoleMap(){
         Map<String,String> roleMap = new HashMap<>();
+
         roleMap.put("ROLE_EMPLOYEE", "Employee");
         roleMap.put("ROLE_USER", "User");
+
         return roleMap;
     }
 }

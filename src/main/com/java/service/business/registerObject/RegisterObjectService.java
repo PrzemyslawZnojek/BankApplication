@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RegisterObjectImpl {
+public class RegisterObjectService {
 
     private AccountService accountService;
     private CustomerService customerService;
@@ -22,7 +22,7 @@ public class RegisterObjectImpl {
     private RegisterObject registerObject;
 
     @Autowired
-    public RegisterObjectImpl(AccountService accountService, CustomerService customerService, UsersService usersService, AuthoritiesService authoritiesService, PasswordGenerator passwordGenerator, AccountNumberGenerator accountNumberGenerator) {
+    public RegisterObjectService(AccountService accountService, CustomerService customerService, UsersService usersService, AuthoritiesService authoritiesService, PasswordGenerator passwordGenerator, AccountNumberGenerator accountNumberGenerator) {
         this.accountService = accountService;
         this.customerService = customerService;
         this.usersService = usersService;
@@ -31,14 +31,14 @@ public class RegisterObjectImpl {
         this.accountNumberGenerator = accountNumberGenerator;
     }
 
-    public RegisterObjectImpl(AccountService accountService, CustomerService customerService, UsersService usersService, AuthoritiesService authoritiesService, PasswordGenerator passwordGenerator, AccountNumberGenerator accountNumberGenerator, RegisterObject registerObject) {
-        this.accountService = accountService;
-        this.customerService = customerService;
-        this.usersService = usersService;
-        this.authoritiesService = authoritiesService;
-        this.passwordGenerator = passwordGenerator;
-        this.accountNumberGenerator = accountNumberGenerator;
-        this.registerObject = registerObject;
+    public RegisterObjectService(RegisterObjectBuilder registerObjectBuilder) {
+        this.accountService = registerObjectBuilder.accountService;
+        this.customerService = registerObjectBuilder.customerService;
+        this.usersService = registerObjectBuilder.usersService;
+        this.authoritiesService = registerObjectBuilder.authoritiesService;
+        this.passwordGenerator = registerObjectBuilder.passwordGenerator;
+        this.accountNumberGenerator = registerObjectBuilder.accountNumberGenerator;
+        this.registerObject = registerObjectBuilder.registerObject;
     }
 
     public void insertIntoThreeTablesByOneSubmit(){
@@ -85,7 +85,7 @@ public class RegisterObjectImpl {
         registerObject.getAuthorities().setUsername(registerObject.getAccount().getUsername());
     }
 
-    public abstract class RegisteObjectBuilder{
+    public static class RegisterObjectBuilder {
 
         private AccountService accountService;
         private CustomerService customerService;
@@ -95,6 +95,46 @@ public class RegisterObjectImpl {
         private AccountNumberGenerator accountNumberGenerator;
         private RegisterObject registerObject;
 
+        public RegisterObjectBuilder(){};
+
+        public RegisterObjectBuilder accountService(AccountService accountService){
+            this.accountService = accountService;
+            return this;
+        }
+
+        public RegisterObjectBuilder customerService(CustomerService customerService){
+            this.customerService = customerService;
+            return this;
+        }
+
+        public RegisterObjectBuilder usersService(UsersService usersService){
+            this.usersService = usersService;
+            return this;
+        }
+
+        public RegisterObjectBuilder authoritiesService(AuthoritiesService authoritiesService){
+            this.authoritiesService = authoritiesService;
+            return this;
+        }
+
+        public RegisterObjectBuilder passwordGenerator(PasswordGenerator passwordGenerator){
+            this.passwordGenerator = passwordGenerator;
+            return this;
+        }
+
+        public RegisterObjectBuilder accountNumberGenerator(AccountNumberGenerator accountNumberGenerator){
+            this.accountNumberGenerator = accountNumberGenerator;
+            return this;
+        }
+
+        public RegisterObjectBuilder registerObject(RegisterObject registerObject){
+            this.registerObject = registerObject;
+            return this;
+        }
+
+        public RegisterObjectService build(){
+            return new RegisterObjectService(this);
+        }
 
     }
 }
