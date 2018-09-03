@@ -21,6 +21,11 @@
 		padding: 2px;
 		font-size: 25px;
 	}
+
+	#clockdiv {
+		color: red;
+	}
+
 	.navbar {
 		margin-bottom: 0 !important;
 		background-color: #d9edf7 !important;
@@ -89,6 +94,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
 	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<meta http-equiv="refresh" content="<%=session.getMaxInactiveInterval()%>;url=showMyLoginPage"/>
 </head>
 
 <body>
@@ -107,6 +114,7 @@
 			<form:form action="${pageContext.request.contextPath}/logout"
 					   method="POST"
 					   id="logout">
+				<div id="clockdiv"></div>
 				<input type="submit" value="Logout" class="btn btn-secondary btn-sm"/>
 			</form:form>
 		</div>
@@ -187,7 +195,7 @@
 	</div>
 
 </div>
-
+<script src="<c:url value="/resources/javaScript/logoutTimer.js" />"></script>
 </body>
 
 

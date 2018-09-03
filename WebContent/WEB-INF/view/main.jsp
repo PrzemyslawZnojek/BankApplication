@@ -40,7 +40,9 @@ h3 {
     float: right;
 }
 
-
+#clockdiv {
+    color: red;
+}
 
 .sidebar {
     background-color: #f8f8f8;
@@ -97,8 +99,6 @@ h3 {
 
 <body>
 
-
-
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 		  <div class="navbar-header">
@@ -111,6 +111,7 @@ h3 {
 			<form:form action="${pageContext.request.contextPath}/logout" 
 					   method="POST"
 					   id="logout">
+                <div id="clockdiv"></div>
 	 			<input type="submit" value="Logout" class="btn btn-secondary btn-sm"/>
 			</form:form>
 		  </div>
@@ -184,7 +185,8 @@ h3 {
 
 		</div>
 
-		</div>	
+		</div>
+    <script src="<c:url value="/resources/javaScript/logoutTimer.js" />"></script>
 </body>
 
 </html>
