@@ -6,10 +6,7 @@ import main.com.java.service.domain.interfaces.AuthoritiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import main.com.java.service.business.generators.AccountNumberGenerator;
 import main.com.java.service.business.generators.PasswordGenerator;
@@ -18,6 +15,7 @@ import main.com.java.service.domain.interfaces.CustomerService;
 import main.com.java.service.domain.interfaces.UsersService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -41,15 +39,24 @@ public class AccountController {
 		this.authoritiesService = authoritiesService;
 	}
 
+	@RequestMapping("/list")
+	public String listCustomers(Model theModel) {
+		List<Customer> theCustomers = customerService.getCustomers();
+
+		theModel.addAttribute("customers", theCustomers);
+
+		return "main";
+	}
+
 	@GetMapping("/showFormForAddAccount")
 	public String showFormForAddAccount(Model theModel){
 		RegisterObject registerObject = new RegisterObject(new Account(), new Customer(), new Users(), new Authorities());
 
 		theModel.addAttribute("registerObject", registerObject);
 
-		return "account-form";
+		return "accountAdding-form";
 	}
-	
+
 	@PostMapping("/saveAccount")
 	public String saveAccount(@ModelAttribute("registerObject") RegisterObject registerObject) {
 		RegisterObjectService registerObjectService = new RegisterObjectService.RegisterObjectBuilder()
@@ -63,6 +70,24 @@ public class AccountController {
 				.build();
 
 		registerObjectService.insertIntoThreeTablesByOneSubmit();
+
+		return "redirect:/customer/list";
+	}
+
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("customerID") long theId, Model theModel){
+		Customer theCustomer = customerService.getCustomer(theId);
+
+		theModel.addAttribute("customer", theCustomer);
+
+		return "customerUpdate-form";
+
+	}
+
+	@GetMapping("/delete")
+	public String deleteCustomer(@RequestParam("customerID") long theId) {
+
+		customerService.deleteCustomer(theId);
 
 		return "redirect:/customer/list";
 	}

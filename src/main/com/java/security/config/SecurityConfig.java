@@ -49,10 +49,14 @@ public class SecurityConfig
 			.and()
 			.logout()
 			.permitAll();
+
+		http.sessionManagement().invalidSessionUrl("/showMyLoginPage");
+
 	}
-	
+
+
 	@Bean
-	public DataSource securityDataSource(){
+	public DataSource securityDataSource() throws Exception{
 		
 		ComboPooledDataSource securityDataSource = new ComboPooledDataSource();
 		
