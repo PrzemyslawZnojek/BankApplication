@@ -58,7 +58,7 @@ public class AccountController {
 	}
 
 	@PostMapping("/saveAccount")
-	public String saveAccount(@ModelAttribute("registerObject") RegisterObject registerObject) {
+	public String saveAccount(@ModelAttribute("registerObject") RegisterObject registerObject, Model theModel) {
 		RegisterObjectService registerObjectService = new RegisterObjectService.RegisterObjectBuilder()
 				.usersService(usersService)
 				.customerService(customerService)
@@ -71,7 +71,12 @@ public class AccountController {
 
 		registerObjectService.insertIntoThreeTablesByOneSubmit();
 
-		return "redirect:/customer/list";
+		Users user = usersService.getOneUser("john");
+		theModel.addAttribute("username", user.getUsername());
+		theModel.addAttribute("password", user.getPassword());
+
+
+		return "showPasswordForUser";
 	}
 
 	@GetMapping("/showFormForUpdate")

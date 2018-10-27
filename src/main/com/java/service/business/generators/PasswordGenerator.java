@@ -1,5 +1,6 @@
 package main.com.java.service.business.generators;
 
+import main.com.java.service.business.encription.Password;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -14,9 +15,9 @@ public class PasswordGenerator {
     private static SecureRandom random = new SecureRandom();
 
     public String returnPasswordWithEncryption(){
-        String unencryptedPassword = generatePassword();
+        String unencryptedPassword = Password.hashPassword(generatePassword());
         StringBuilder buildEncryptedPassword = new StringBuilder(unencryptedPassword);
-        buildEncryptedPassword.insert(0,"{noop}");
+        buildEncryptedPassword.insert(0,"{bcrypt}");
         return buildEncryptedPassword.toString();
     }
 
@@ -26,6 +27,7 @@ public class PasswordGenerator {
         for (int i = 0; i < lenghtOfPassword; i++) {
             int indexOfCharInDictionary = random.nextInt(ALL_CHARS.length());
             password += ALL_CHARS.charAt(indexOfCharInDictionary);
+            System.out.println(password);
         }
         return password;
     }

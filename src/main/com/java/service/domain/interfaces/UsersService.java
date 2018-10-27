@@ -7,4 +7,5 @@ public interface UsersService {
 	void addUser(Users theUser);
 	void deleteUser(Users theUser);
 	Users getUser(String username);
+	Users getOneUser(String userName);
 }

@@ -51,6 +51,14 @@
 				/>
 			</div>
 		</div>
+		<div class="col-xs-3 sidebar">
+			<div class="sidebar-container">
+				<input type="button" value="Make Transfer"
+				   	onclick="window.location.href='makeTransfer'; return false;"
+				   	class="btn btn-primary"
+				/>
+			</div>
+		</div>
 		<div class="col-xs-9 main">	
 			<!--  add a search box -->
 	

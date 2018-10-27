@@ -59,4 +59,15 @@ public class UsersDAOImpl implements UsersDAO {
         }
     }
 
+    @Override
+    public Users getOneUser(String userName) {
+        try {
+            return createCurrentSession(sessionFactory).get(Users.class, userName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
 }

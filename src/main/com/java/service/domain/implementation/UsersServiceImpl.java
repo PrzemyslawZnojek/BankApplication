@@ -33,4 +33,10 @@ public class UsersServiceImpl implements UsersService {
     public Users getUser(String username) {
         return usersDAO.getUsers(username);
     }
+
+    @Override
+    @Transactional
+    public Users getOneUser(String userName) {
+        return usersDAO.getOneUser(userName);
+    }
 }
