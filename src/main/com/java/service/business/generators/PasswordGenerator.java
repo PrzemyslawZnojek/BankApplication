@@ -15,8 +15,8 @@ public class PasswordGenerator {
     private static SecureRandom random = new SecureRandom();
 
     public String returnPasswordWithEncryption(){
-        String unencryptedPassword = Password.hashPassword(generatePassword());
-        StringBuilder buildEncryptedPassword = new StringBuilder(unencryptedPassword);
+        String encryptedPassword = Password.hashPassword(generatePassword());
+        StringBuilder buildEncryptedPassword = new StringBuilder(encryptedPassword);
         buildEncryptedPassword.insert(0,"{bcrypt}");
         return buildEncryptedPassword.toString();
     }
