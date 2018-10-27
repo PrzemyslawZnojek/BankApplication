@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.com.java.service.business.objectUtils.OrderItemFilter;
+import main.com.java.service.business.objectUtils.UserRecognizer;
 import main.com.java.service.domain.interfaces.AccountService;
 import main.com.java.service.domain.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +25,14 @@ import main.com.java.service.domain.interfaces.OrderItemService;
 
 @Controller
 @RequestMapping("/user")
-public class OrderItemController {
+public class UserController {
 
     private OrderItemService orderItemService;
     private UsersService usersService;
     private AccountService accountService;
 
     @Autowired
-    public OrderItemController(OrderItemService orderItemService, UsersService usersService, AccountService accountService) {
+    public UserController(OrderItemService orderItemService, UsersService usersService, AccountService accountService) {
         this.orderItemService = orderItemService;
         this.usersService = usersService;
         this.accountService = accountService;
@@ -50,24 +51,41 @@ public class OrderItemController {
     @PostMapping("/saveTransfer")
     public String saveTransfer(@ModelAttribute("orderitem") OrderItem theOrderItem,
                                @ModelAttribute("account") Account account,
-                               @RequestParam("accountNumberSender") String Send,
                                @RequestParam("accountNumberReceiver") String Rec,
                                @RequestParam("amount") long amount) {
-        orderItemService.saveTransfer(theOrderItem, account, Send, Rec, amount);
+        String loggedUser = getLoggedUsername();
+        String loggedUserAccountNumber = accountService.getAccountByUsername(loggedUser).getAccountNumber();
+        orderItemService.saveTransfer(theOrderItem, account, loggedUserAccountNumber, Rec, amount);
         return "redirect:/user/panel";
     }
 
 
-
-    
-
-    @RequestMapping("/panel")
-    public String listCustomers(Model theModel) {
-        OrderItemFilter orderItemFilter = new OrderItemFilter(usersService, orderItemService, accountService);
+    @RequestMapping("/senderOrderItemList")
+    public String listCustomersSender(Model theModel) {
+        OrderItemFilter orderItemFilter = new OrderItemFilter(orderItemService, accountService);
         List<OrderItem> theOrderItems = orderItemFilter.getSenderOrderItem();
         theModel.addAttribute("orderItems", theOrderItems);
-        return "indexUser";
+        return "senderOrderList";
     }
 
+    @RequestMapping("/receiverOrderItemList")
+    public String listCustomersReceiver(Model theModel) {
+        OrderItemFilter orderItemFilter = new OrderItemFilter(orderItemService, accountService);
+        List<OrderItem> theOrderItems = orderItemFilter.getReceiverOrderItem();
+        theModel.addAttribute("orderItems", theOrderItems);
+        return "receiverOrderList";
+    }
+
+    @RequestMapping("/panel")
+    public String userInformation(Model theModel) {
+        String loggedUser = getLoggedUsername();
+        theModel.addAttribute("account", accountService.getAccountByUsername(loggedUser));
+        return "user-panel";
+    }
+
+    private String getLoggedUsername() {
+        UserRecognizer userRecognizer = new UserRecognizer(accountService);
+        return userRecognizer.getAuthenticatedPrincipalUsername();
+    }
 
 }

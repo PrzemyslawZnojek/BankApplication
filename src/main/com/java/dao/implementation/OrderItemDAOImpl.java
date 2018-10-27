@@ -46,13 +46,13 @@ public class OrderItemDAOImpl implements OrderItemDAO{
         String hql = "FROM OrderItem WHERE accountNumberSender=:accountNumberSenderParam";
         Query theQuery = createCurrentSession(sessionFactory).createQuery(hql);
         theQuery.setParameter("accountNumberSenderParam", accountNumberSenderValue);
-        List resultList = theQuery.getResultList();
-        return resultList;
+        return theQuery.getResultList();
 
     }
 
 
     @Override
+	@Transactional
     public List<OrderItem> getOrderItemListReceiver(String accountNumberReceiverValue) {
         String hql = "FROM OrderItem WHERE accountNumberReceiver=:accountNumberReceiverParam";
         Query theQuery = createCurrentSession(sessionFactory).createQuery(hql);
@@ -104,26 +104,18 @@ public class OrderItemDAOImpl implements OrderItemDAO{
 
 	@Override
 	public void saveTransfer(OrderItem theOrderItem, Account account, String Send, String Rec, long amount) {
-
-		// get hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		
-//		Query query1 = currentSession.createQuery("UPDATE account SET balance = 999999 where accountNumber= :Send");
-//		query1.setParameter("Send", Send);
-//		query1.executeUpdate();
-//		Query query2 = currentSession.createQuery("UPDATE account SET balance = 999999 where accountNumber= :Rec");
-//		query2.setParameter("Rec", Rec);
-//		query2.executeUpdate();
-		
+
+		theOrderItem.setAccountNumberSender(Send);
+
 		String dbQuery = "UPDATE Account SET balance = balance - :amount where accountNumber= :Send";
 		Query q1 =  currentSession.createQuery(dbQuery).setParameter("Send", Send).setParameter("amount", amount);
-		
+
 		String dbQuery2 = "UPDATE Account SET balance = balance + :amount1 where accountNumber= :Rec";
 		Query q2 =  currentSession.createQuery(dbQuery2).setParameter("Rec", Rec).setParameter("amount1", amount);
 		int result = q1.executeUpdate();
 		int result2 = q2.executeUpdate();
-		
-		//save the orderItem 
+
 		currentSession.save(theOrderItem);
 		
 	}

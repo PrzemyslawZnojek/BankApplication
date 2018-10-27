@@ -41,14 +41,16 @@
         </div>
     </div>
 </nav>
+
+<!-- new button: -->
 <div class="col-xs-3 sidebar">
     <div class="sidebar-container">
-        <input type="button" value="Incoming Transfers"
-               onclick="window.location.href='receiverOrderItemList'; return false;"
+        <input type="button" value="Make Transfer"
+               onclick="window.location.href='makeTransfer'; return false;"
                class="btn btn-primary"
         />
-        <input type="button" value="Outgoing Transfers"
-               onclick="window.location.href='senderOrderItemList'; return false;"
+        <input type="button" value="Incoming Transfers"
+               onclick="window.location.href='receiverOrderItemList'; return false;"
                class="btn btn-primary"
         />
         <input type="button" value="Back to Panel"
@@ -59,32 +61,28 @@
 </div>
 <div class="col-xs-9 main">
     <div class="table-container">
-        <form:form action="saveTransfer" modelAttribute="orderitem" method="POST">
-            <form:hidden path="orderItemID"/>
 
-            <table>
-                <tbody>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Outgoing Transfers</div>
 
+            <!-- Table -->
+            <table class="table">
                 <tr>
-                    <td><label>Amount:</label></td>
-                    <td><form:input path="amount"/></td>
+                    <th>Amount</th>
+                    <th>Account Number Receiver</th>
                 </tr>
 
-                <tr>
-                    <td><label>Receiver Account Number:</label></td>
-                    <td><form:input path="accountNumberReceiver"/></td>
-                </tr>
+                <!-- loop over customers -->
+                <c:forEach var="tempOrderItems" items="${orderItems}">
 
-
-                <tr>
-                    <td><label></label></td>
-                    <td><input type="submit" value="Save" class="save"/></td>
-                </tr>
-
-                </tbody>
+                    <tr>
+                        <td>${tempOrderItems.amount}</td>
+                        <td>${tempOrderItems.accountNumberReceiver}</td>
+                    </tr>
+                </c:forEach>
             </table>
-
-        </form:form>
+        </div>
 
     </div>
 
@@ -93,4 +91,3 @@
 </body>
 
 </html>
-

@@ -41,8 +41,14 @@
         </div>
     </div>
 </nav>
+
+
 <div class="col-xs-3 sidebar">
     <div class="sidebar-container">
+        <input type="button" value="Make Transfer"
+               onclick="window.location.href='makeTransfer'; return false;"
+               class="btn btn-primary"
+        />
         <input type="button" value="Incoming Transfers"
                onclick="window.location.href='receiverOrderItemList'; return false;"
                class="btn btn-primary"
@@ -51,46 +57,46 @@
                onclick="window.location.href='senderOrderItemList'; return false;"
                class="btn btn-primary"
         />
-        <input type="button" value="Back to Panel"
-               onclick="window.location.href='panel'; return false;"
-               class="btn btn-primary"
-        />
     </div>
 </div>
+
 <div class="col-xs-9 main">
     <div class="table-container">
-        <form:form action="saveTransfer" modelAttribute="orderitem" method="POST">
-            <form:hidden path="orderItemID"/>
-
+        <form:form action="saveCustomer" modelAttribute="account" method="POST">
             <table>
                 <tbody>
 
                 <tr>
-                    <td><label>Amount:</label></td>
-                    <td><form:input path="amount"/></td>
+                    <td><label>Username:</label></td>
+                    <td>${account.username}</td>
                 </tr>
 
                 <tr>
-                    <td><label>Receiver Account Number:</label></td>
-                    <td><form:input path="accountNumberReceiver"/></td>
+                    <td><label>First Name:</label></td>
+                    <td>${account.customer.firstName}</td>
                 </tr>
 
+                <tr>
+                    <td><label>Last Name:</label></td>
+                    <td>${account.customer.lastName}</td>
+                </tr>
 
                 <tr>
-                    <td><label></label></td>
-                    <td><input type="submit" value="Save" class="save"/></td>
+                    <td><label>Account Number:</label></td>
+                    <td>${account.accountNumber}</td>
+                </tr>
+
+                <tr>
+                    <td><label>Balance:</label></td>
+                    <td>${account.balance}</td>
                 </tr>
 
                 </tbody>
             </table>
-
         </form:form>
-
     </div>
-
 </div>
 <script src="<c:url value="/resources/javaScript/logoutTimer.js" />"></script>
 </body>
 
 </html>
-

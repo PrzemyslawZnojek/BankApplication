@@ -14,37 +14,23 @@ import java.util.*;
 
 public class OrderItemFilter {
 
-    private UsersService usersService;
     private OrderItemService orderItemService;
     private AccountService accountService;
 
     @Autowired
-    public OrderItemFilter(UsersService usersService, OrderItemService orderItemService, AccountService accountService) {
-        this.usersService = usersService;
+    public OrderItemFilter(OrderItemService orderItemService, AccountService accountService) {
         this.orderItemService = orderItemService;
         this.accountService = accountService;
     }
 
     public List<OrderItem> getSenderOrderItem(){
-        try{
-            return orderItemService.getOrderItemListSender(getAccountNumber());
-        }catch (Exception e){
-            e.printStackTrace();
-            return orderItemService.getOrderItems();
-        }
+        UserRecognizer userRecognizer = new UserRecognizer(accountService);
+        return orderItemService.getOrderItemListSender(userRecognizer.getAccountNumber());
     }
 
     public List<OrderItem> getReceiverOrderItem(){
-        return orderItemService.getOrderItemListReceiver(getAccountNumber());
+        UserRecognizer userRecognizer = new UserRecognizer(accountService);
+        return orderItemService.getOrderItemListReceiver(userRecognizer.getAccountNumber());
     }
 
-    private String getAccountNumber(){
-        Account account = accountService.getAccountByUsername(getAuthenticatedPrincipalUsername());
-        return account.getAccountNumber();
-    }
-
-    private String getAuthenticatedPrincipalUsername(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
-    }
 }
