@@ -1,5 +1,7 @@
 package main.com.java.service.domain.implementation;
 
+import java.util.List;
+
 import main.com.java.dao.interfaces.UsersDAO;
 import main.com.java.entity.Users;
 import main.com.java.service.domain.interfaces.UsersService;
@@ -20,5 +22,18 @@ public class UsersServiceImpl implements UsersService {
     @Transactional
     public void addUser(Users theUser) {
         usersDAO.addUsers(theUser);
+    }
+
+    //ADDED
+    @Override
+    @Transactional
+    public List<Users> getUsers() {
+        return usersDAO.getUsersList();
+    }
+
+    @Override
+    @Transactional
+    public Users getOneUser(String userName) {
+        return usersDAO.getOneUser(userName);
     }
 }

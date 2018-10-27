@@ -3,6 +3,7 @@ package main.com.java.controller;
 import main.com.java.entity.*;
 import main.com.java.service.business.registerObject.RegisterObjectService;
 import main.com.java.service.domain.interfaces.AuthoritiesService;
+import net.bytebuddy.agent.builder.AgentBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,7 +59,7 @@ public class AccountController {
 	}
 
 	@PostMapping("/saveAccount")
-	public String saveAccount(@ModelAttribute("registerObject") RegisterObject registerObject) {
+	public String saveAccount(@ModelAttribute("registerObject") RegisterObject registerObject, Model theModel) {
 		RegisterObjectService registerObjectService = new RegisterObjectService.RegisterObjectBuilder()
 				.usersService(usersService)
 				.customerService(customerService)
@@ -71,7 +72,28 @@ public class AccountController {
 
 		registerObjectService.insertIntoThreeTablesByOneSubmit();
 
-		return "redirect:/customer/list";
+		// This moment is clue. I need to store this password and transfer it to new jsp Window.
+		System.out.println(passwordGenerator.generatePassword());
+		System.out.println(passwordGenerator.getPassword());
+		//
+
+		Users user = usersService.getOneUser("john");
+
+		//theModel.addAttribute("customers", user);
+
+		Map<String, String> map = new HashMap<>();
+		map.put("spring", "mvc");
+		theModel.addAttribute("username", user.getUsername());
+		theModel.addAttribute("password", user.getPassword());
+		theModel.mergeAttributes(map);
+
+        //List<Users> theUsers = usersService.getUsers();
+		//System.out.println(theUsers);
+		//theModel.addAttribute("customers", theUsers);
+
+		//return "redirect:/customer/list";
+		return "showPasswordForUser";
+		//return "redirect:/customer/showPasswordForUser";
 	}
 
 	@GetMapping("/showFormForUpdate")
