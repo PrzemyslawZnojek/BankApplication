@@ -8,13 +8,14 @@ import org.hibernate.SessionFactory;
 
 public interface AccountDAO {
 
-	public List<Account> getAccountList();
-	public Account getAccountById(int id);
-	public void addAccount(Account theAccount); //in usage
-	public void updateAccount(Account theAccount);
-	public void removeAccount(Account theAccount);
-	public Session createCurrentSession(SessionFactory sf);
-	public void saveAccount(Account theAccount); //this only in use
-	public List<String> getAccountNumberList();
+	List<Account> getAccountList();
+	Account getAccountById(int id);
+	Account getAccountByUsername(String username);
+	void addAccount(Account theAccount); //in usage
+	void updateAccount(Account theAccount);
+	void deleteAccount(Account theAccount);
+	Session createCurrentSession(SessionFactory sf);
+	void saveAccount(Account theAccount); //this only in use
+	List<String> getAccountNumberList();
 	
 }

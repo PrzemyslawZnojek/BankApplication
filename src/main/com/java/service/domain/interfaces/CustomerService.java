@@ -6,14 +6,10 @@ import main.com.java.entity.Customer;
 
 public interface CustomerService {
 	
-	public List<Customer> getCustomers();
-
-	public void addCustomer(Customer theCustomer);
-
-	public Customer getCustomer(long theId);
-
-	public void deleteCustomer(long theId);
-
-	public List<Customer> searchCustomers(String theSearchName);
+	List<Customer> getCustomers();
+	void addCustomer(Customer theCustomer);
+	Customer getCustomer(long theId);
+	void deleteCustomer(long theId);
+	List<Customer> searchCustomers(String theSearchName);
 
 }

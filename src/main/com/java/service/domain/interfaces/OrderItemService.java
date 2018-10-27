@@ -7,7 +7,9 @@ import main.com.java.entity.OrderItem;
 
 public interface OrderItemService {
 
-	public void saveTransfer(OrderItem theOrderItem, Account account, String send, String rec, long amount);
-	public List<OrderItem> getOrderItems();
+	void saveTransfer(OrderItem theOrderItem, Account account, String send, String rec, long amount);
+    List<OrderItem> getOrderItemListSender(String accountNumberSender);
+    List<OrderItem> getOrderItemListReceiver(String accountNumberReceiver);
+	List<OrderItem> getOrderItems();
 
 }

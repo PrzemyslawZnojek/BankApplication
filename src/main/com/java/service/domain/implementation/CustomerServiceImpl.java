@@ -13,44 +13,44 @@ import main.com.java.service.domain.interfaces.CustomerService;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
-	
-	private final CustomerDAO customerDAO;
 
-	@Autowired
-	public CustomerServiceImpl(CustomerDAO customerDAO) {
-		this.customerDAO = customerDAO;
-	}
+    private final CustomerDAO customerDAO;
 
-	@Override
-	@Transactional
-	public List<Customer> getCustomers() {
-		return customerDAO.getCustomerList();
-	}
+    @Autowired
+    public CustomerServiceImpl(CustomerDAO customerDAO) {
+        this.customerDAO = customerDAO;
+    }
 
-	@Override
-	@Transactional
-	public void addCustomer(Customer theCustomer) {
+    @Override
+    @Transactional
+    public List<Customer> getCustomers() {
+        return customerDAO.getCustomerList();
+    }
 
-		customerDAO.addCustomer(theCustomer);
-		
-	}
+    @Override
+    @Transactional
+    public void addCustomer(Customer theCustomer) {
 
-	@Override
-	@Transactional
-	public Customer getCustomer(long theId) {
-		return customerDAO.getCustomer(theId);
-	}
+        customerDAO.addCustomer(theCustomer);
 
-	@Override
-	@Transactional
-	public void deleteCustomer(long theId) {
-		customerDAO.deleteCustomer(theId);
-	}
+    }
 
-	@Override
-	@Transactional
-	public List<Customer> searchCustomers(String theSearchName) {
-		   return customerDAO.searchCustomers(theSearchName);
-	}
+    @Override
+    @Transactional
+    public Customer getCustomer(long theId) {
+        return customerDAO.getCustomerById(theId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCustomer(long theId) {
+        customerDAO.deleteCustomer(theId);
+    }
+
+    @Override
+    @Transactional
+    public List<Customer> searchCustomers(String theSearchName) {
+        return customerDAO.searchCustomers(theSearchName);
+    }
 
 }

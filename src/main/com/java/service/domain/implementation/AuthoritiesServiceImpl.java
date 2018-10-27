@@ -13,11 +13,18 @@ public class AuthoritiesServiceImpl implements AuthoritiesService {
     private final AuthoritiesDAO authoritiesDAO;
 
     @Autowired
-    public AuthoritiesServiceImpl(AuthoritiesDAO authoritiesDAO) { this.authoritiesDAO = authoritiesDAO; }
+    public AuthoritiesServiceImpl(AuthoritiesDAO authoritiesDAO) {
+        this.authoritiesDAO = authoritiesDAO;
+    }
 
     @Override
     @Transactional
-	public void addAuthorities(Authorities authorities) {
+    public void addAuthorities(Authorities authorities) {
         authoritiesDAO.addAuthorities(authorities);
-	}
+    }
+
+    @Override
+    public void deleteAuthorities(Authorities authorities) {
+        authoritiesDAO.deleteAuthorities(authorities);
+    }
 }

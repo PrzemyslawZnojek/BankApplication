@@ -1,7 +1,7 @@
 package main.com.java.controller;
 
 import main.com.java.entity.*;
-import main.com.java.service.business.registerObject.RegisterObjectService;
+import main.com.java.service.business.objectUtils.RegisterObjectService;
 import main.com.java.service.domain.interfaces.AuthoritiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -87,7 +87,15 @@ public class AccountController {
 	@GetMapping("/delete")
 	public String deleteCustomer(@RequestParam("customerID") long theId) {
 
+		Customer customer = customerService.getCustomer(theId);
+		Account account = customer.getAccount();
+		Users users = usersService.getUser(account.getUsername());
+		Authorities authorities = users.getAuthorities();
+
+		authoritiesService.deleteAuthorities(authorities);
+		usersService.deleteUser(users);
 		customerService.deleteCustomer(theId);
+		accountService.deleteAccount(account);
 
 		return "redirect:/customer/list";
 	}

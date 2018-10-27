@@ -39,17 +39,6 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public Customer getCustomerById(int id) {
-		try {			
-			return createCurrentSession(sessionFactory).get(Customer.class, id);		
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-
-	}
-
-	@Override
 	public void addCustomer(Customer theCustomer) {
 		try {
 			Session currentSession = sessionFactory.getCurrentSession();
@@ -57,7 +46,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
@@ -66,17 +55,20 @@ public class CustomerDAOImpl implements CustomerDAO{
 			createCurrentSession(sessionFactory).update(theCustomer);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-		
+		}
+
 	}
 
 	@Override
-	public Customer getCustomer(long theId) {
-		
-		// now retrieve/read from database using the primary key
-		Customer theCustomer = createCurrentSession(sessionFactory).get(Customer.class, theId);
-		
-		return theCustomer;
+	@Transactional
+	public Customer getCustomerById(long theId) {
+		try {
+			return createCurrentSession(sessionFactory).get(Customer.class, theId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 	@Override

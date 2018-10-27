@@ -7,8 +7,9 @@ import main.com.java.entity.Users;
 
 public interface UsersDAO {
 
-	public Session createCurrentSession(SessionFactory sf);
-	public void addUsers(Users theUsers);
-	public Users getUsers(String username);
+	Session createCurrentSession(SessionFactory sf);
+	void addUsers(Users theUsers);
+	Users getUsers(String username);
+	void deleteUser(Users theUsers);
 
 }

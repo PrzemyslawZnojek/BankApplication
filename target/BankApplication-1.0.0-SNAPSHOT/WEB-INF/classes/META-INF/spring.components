@@ -1,11 +1,9 @@
 #
-#Wed Aug 29 17:50:27 CEST 2018
+#Sat Oct 27 14:02:29 CEST 2018
+main.com.java.service.business.objectUtils.RegisterObjectService=org.springframework.stereotype.Component
 main.com.java.dao.implementation.AccountDAOImpl=org.springframework.stereotype.Component
-main.com.java.controller.CustomerController=org.springframework.stereotype.Component
-main.com.java.service.business.registerObject.RegisterObjectService=org.springframework.stereotype.Component
-main.com.java.dao.implementation.AuthoritiesDAOImpl=org.springframework.stereotype.Component
 main.com.java.controller.OrderItemController=org.springframework.stereotype.Component
-main.com.java.controller.HomeController=org.springframework.stereotype.Component
+main.com.java.dao.implementation.AuthoritiesDAOImpl=org.springframework.stereotype.Component
 main.com.java.dao.implementation.UsersDAOImpl=org.springframework.stereotype.Component
 main.com.java.service.domain.implementation.AuthoritiesServiceImpl=org.springframework.stereotype.Component
 main.com.java.security.config.SecurityConfig=org.springframework.stereotype.Component
@@ -13,7 +11,6 @@ main.com.java.entity.Authorities=javax.persistence.Entity,javax.persistence.Tabl
 main.com.java.service.domain.implementation.OrderItemServiceImpl=org.springframework.stereotype.Component
 main.com.java.entity.OrderItem=javax.persistence.Entity,javax.persistence.Table
 main.com.java.service.domain.implementation.UsersServiceImpl=org.springframework.stereotype.Component
-main.com.java.controller.UserController=org.springframework.stereotype.Component
 main.com.java.service.domain.implementation.CustomerServiceImpl=org.springframework.stereotype.Component
 main.com.java.controller.AccountController=org.springframework.stereotype.Component
 main.com.java.service.business.generators.AccountNumberGenerator=org.springframework.stereotype.Component

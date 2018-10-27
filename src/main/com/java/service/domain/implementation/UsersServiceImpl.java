@@ -13,12 +13,24 @@ public class UsersServiceImpl implements UsersService {
     private UsersDAO usersDAO;
 
     @Autowired
-    public UsersServiceImpl(UsersDAO usersDAO) { this.usersDAO = usersDAO; }
+    public UsersServiceImpl(UsersDAO usersDAO) {
+        this.usersDAO = usersDAO;
+    }
 
 
     @Override
     @Transactional
     public void addUser(Users theUser) {
         usersDAO.addUsers(theUser);
+    }
+
+    @Override
+    public void deleteUser(Users theUser) {
+        usersDAO.deleteUser(theUser);
+    }
+
+    @Override
+    public Users getUser(String username) {
+        return usersDAO.getUsers(username);
     }
 }

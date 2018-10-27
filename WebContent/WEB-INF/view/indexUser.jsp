@@ -51,6 +51,14 @@
 				/>
 			</div>
 		</div>
+		<div class="col-xs-3 sidebar">
+			<div class="sidebar-container">
+				<input type="button" value="Make Transfer"
+				   	onclick="window.location.href='makeTransfer'; return false;"
+				   	class="btn btn-primary"
+				/>
+			</div>
+		</div>
 		<div class="col-xs-9 main">	
 			<!--  add a search box -->
 	
@@ -59,13 +67,12 @@
 
 			<div class="panel panel-default">
 				<!-- Default panel contents -->
-				<div class="panel-heading">Panel heading</div>
+				<div class="panel-heading">Outgoing Transfers</div>
 				
 				<!-- Table -->
 				<table class="table">
 						<tr>
 							<th>Amount</th>
-							<th>Account Number Sender</th>
 							<th>Account Number Receiver</th>
 						</tr>
 						
@@ -74,17 +81,7 @@
 						
 						<tr>
 							<td>${tempOrderItems.amount}</td>
-							<td>${tempOrderItems.accountNumberSender}</td>
 							<td>${tempOrderItems.accountNumberReceiver}</td>
-							
-							<td>
-							<!-- display the update link -->
-							<a href="${updateLink}" class="btn btn-success btn-sm table-button">Update</a>
-							|
-							<a href="${deleteLink}"
-							onclick="if (!(confirm('Are you sure that you want to delete this user?'))) return false" class="btn btn-danger btn-sm table-button">Delete</a>
-							</td>
-							
 						</tr>
 						</c:forEach>
 					</table>

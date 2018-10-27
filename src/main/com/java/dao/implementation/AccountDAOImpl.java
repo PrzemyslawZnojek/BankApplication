@@ -52,6 +52,20 @@ public class AccountDAOImpl implements AccountDAO{
 	}
 
 	@Override
+	public Account getAccountByUsername(String username) {
+		try {
+			String hql = "FROM Account WHERE username=:usernameParam";
+			Query theQuery = createCurrentSession(sessionFactory).createQuery(hql);
+			theQuery.setParameter("usernameParam", username);
+			return (Account)theQuery.list().get(0);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
 	public void addAccount(Account theAccount) {
 		try {
 			Session currentSession = sessionFactory.getCurrentSession();
@@ -73,7 +87,8 @@ public class AccountDAOImpl implements AccountDAO{
 	}
 
 	@Override
-	public void removeAccount(Account theAccount) {
+	@Transactional
+	public void deleteAccount(Account theAccount) {
 		try {
 			createCurrentSession(sessionFactory).remove(theAccount);
 		} catch (Exception e) {

@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class AuthoritiesDAOImpl implements AuthoritiesDAO {
@@ -23,10 +24,21 @@ public class AuthoritiesDAOImpl implements AuthoritiesDAO {
     }
 
     @Override
+    @Transactional
     public void addAuthorities(Authorities authorities) {
         try{
             Session currentSession = createCurrentSession(sessionFactory);
             currentSession.saveOrUpdate(authorities);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    @Transactional
+    public void deleteAuthorities(Authorities authorities) {
+        try{
+            createCurrentSession(sessionFactory).remove(authorities);
         }catch (Exception e){
             e.printStackTrace();
         }

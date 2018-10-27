@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface AccountService {
 
-	public void addAccount(Account theAccount);
-	public List<String> getAccountNumberList();
+	void addAccount(Account theAccount);
+	void deleteAccount(Account theAccount);
+	Account getAccountByUsername(String username);
+	List<String> getAccountNumberList();
 
 }

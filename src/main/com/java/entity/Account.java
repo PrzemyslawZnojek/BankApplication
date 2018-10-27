@@ -37,11 +37,11 @@ public class Account {
 	@OneToOne(mappedBy="account")
 	private Users users;
 
-	@OneToMany(mappedBy="senderAccount")
-    private Collection<OrderItem> payers;
-
-    @OneToMany(mappedBy="receiverAccount")
-    private Collection<OrderItem> receivers;
+//	@OneToMany(mappedBy="senderAccount")
+//    private Collection<OrderItem> payers;
+//
+//    @OneToMany(mappedBy="receiverAccount")
+//    private Collection<OrderItem> receivers;
 
 	public Account() {}
 
@@ -101,21 +101,21 @@ public class Account {
         this.users = users;
     }
 
-    public Collection<OrderItem> getPayers() {
-        return payers;
-    }
-
-    public void setPayers(Collection<OrderItem> payers) {
-        this.payers = payers;
-    }
-
-    public Collection<OrderItem> getReceivers() {
-        return receivers;
-    }
-
-    public void setReceivers(Collection<OrderItem> receivers) {
-        this.receivers = receivers;
-    }
+//    public Collection<OrderItem> getPayers() {
+//        return payers;
+//    }
+//
+//    public void setPayers(Collection<OrderItem> payers) {
+//        this.payers = payers;
+//    }
+//
+//    public Collection<OrderItem> getReceivers() {
+//        return receivers;
+//    }
+//
+//    public void setReceivers(Collection<OrderItem> receivers) {
+//        this.receivers = receivers;
+//    }
 
     @Override
 	public String toString() {

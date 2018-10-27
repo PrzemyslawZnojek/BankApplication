@@ -24,19 +24,41 @@ public class OrderItemDAOImpl implements OrderItemDAO{
 		this.sessionFactory = sessionFactory;
 	}
 
+	@Transactional
+	@Override
 	public Session createCurrentSession(SessionFactory sf){
 		Session session = sf.getCurrentSession();
-		
+
 		return session;
 	}
-	
+
 	@Override
 	public List<OrderItem> getOrderItemList() {
-		Query<OrderItem> theQuery = createCurrentSession(sessionFactory).createQuery("from OrderItem", OrderItem.class);		
+		Query<OrderItem> theQuery = createCurrentSession(sessionFactory).createQuery("from OrderItem", OrderItem.class);
 		List<OrderItem> orderItemsList = theQuery.getResultList();
-		
+
 		return orderItemsList;
 	}
+
+    @Override
+	@Transactional
+    public List<OrderItem> getOrderItemListSender(String accountNumberSenderValue) {
+        String hql = "FROM OrderItem WHERE accountNumberSender=:accountNumberSenderParam";
+        Query theQuery = createCurrentSession(sessionFactory).createQuery(hql);
+        theQuery.setParameter("accountNumberSenderParam", accountNumberSenderValue);
+        List resultList = theQuery.getResultList();
+        return resultList;
+
+    }
+
+
+    @Override
+    public List<OrderItem> getOrderItemListReceiver(String accountNumberReceiverValue) {
+        String hql = "FROM OrderItem WHERE accountNumberReceiver=:accountNumberReceiverParam";
+        Query theQuery = createCurrentSession(sessionFactory).createQuery(hql);
+        theQuery.setParameter("accountNumberReceiverParam", accountNumberReceiverValue);
+        return theQuery.getResultList();
+    }
 
 	@Override
 	public OrderItem getOrderItemById(int id) {
@@ -61,7 +83,7 @@ public class OrderItemDAOImpl implements OrderItemDAO{
 	}
 
 	@Override
-	public void removeOrderItem(OrderItem theOrderItem) {
+	public void deleteOrderItem(OrderItem theOrderItem) {
 		try {
 			createCurrentSession(sessionFactory).remove(theOrderItem);
 		} catch (Exception e) {

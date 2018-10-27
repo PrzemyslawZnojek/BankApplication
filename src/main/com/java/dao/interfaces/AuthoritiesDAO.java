@@ -4,5 +4,6 @@ import main.com.java.entity.Authorities;
 
 public interface AuthoritiesDAO {
 
-    public void addAuthorities(Authorities authorities);
+    void addAuthorities(Authorities authorities);
+    void deleteAuthorities(Authorities authorities);
 }

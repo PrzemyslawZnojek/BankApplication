@@ -4,6 +4,7 @@ import main.com.java.entity.Authorities;
 
 public interface AuthoritiesService {
 
-	public void addAuthorities(Authorities authorities);
+	void addAuthorities(Authorities authorities);
+	void deleteAuthorities(Authorities authorities);
 
 }

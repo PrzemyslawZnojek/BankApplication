@@ -15,22 +15,32 @@ public class AccountServiceImpl implements AccountService {
 
     private AccountDAO accountDAO;
 
-	@Autowired
-    public AccountServiceImpl(AccountDAO accountDAO){
-    	this.accountDAO=accountDAO;
-	}
+    @Autowired
+    public AccountServiceImpl(AccountDAO accountDAO) {
+        this.accountDAO = accountDAO;
+    }
 
-	@Override
-	@Transactional
-	public void addAccount(Account theAccount) {
-		accountDAO.addAccount(theAccount);
-	}
-
-	@Override
+    @Override
     @Transactional
-	public List<String> getAccountNumberList(){
-		System.out.print("AccountServiceImpl");
-	    return accountDAO.getAccountNumberList();
+    public void addAccount(Account theAccount) {
+        accountDAO.addAccount(theAccount);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAccount(Account theAccount) {
+        accountDAO.deleteAccount(theAccount);
+    }
+
+    @Override
+    @Transactional
+    public Account getAccountByUsername(String username) { return accountDAO.getAccountByUsername(username); }
+
+    @Override
+    @Transactional
+    public List<String> getAccountNumberList() {
+        System.out.print("AccountServiceImpl");
+        return accountDAO.getAccountNumberList();
     }
 
 }

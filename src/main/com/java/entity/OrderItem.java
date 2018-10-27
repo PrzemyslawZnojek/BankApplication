@@ -27,13 +27,13 @@ public class OrderItem {
 	@Column(name="accountNumberReceiver")
 	private String accountNumberReceiver;
 	
-	@ManyToOne
-    @JoinColumn(name="accountNumberSender", insertable = false, updatable = false)
-    private Account senderAccount;
-
-    @ManyToOne
-    @JoinColumn(name="accountNumberReceiver", insertable = false, updatable = false)
-    private Account receiverAccount;
+//	@ManyToOne
+//    @JoinColumn(name="accountNumberSender", insertable = false, updatable = false)
+//    private Account senderAccount;
+//
+//    @ManyToOne
+//    @JoinColumn(name="accountNumberReceiver", insertable = false, updatable = false)
+//    private Account receiverAccount;
 
 	public OrderItem() {}
 	
@@ -43,22 +43,22 @@ public class OrderItem {
 		this.accountNumberReceiver = accountNumberReceiver;
 	}
 	
-	
-	public Account getSenderAccount() {
-		return senderAccount;
-	}
-
-	public Account getReceiverAccount() {
-		return receiverAccount;
-	}
-
-	public void setSenderAccount(Account senderAccount) {
-		this.senderAccount = senderAccount;
-	}
-
-	public void setReceiverAccount(Account receiverAccount) {
-		this.receiverAccount = receiverAccount;
-	}
+//
+//	public Account getSenderAccount() {
+//		return senderAccount;
+//	}
+//
+//	public Account getReceiverAccount() {
+//		return receiverAccount;
+//	}
+//
+//	public void setSenderAccount(Account senderAccount) {
+//		this.senderAccount = senderAccount;
+//	}
+//
+//	public void setReceiverAccount(Account receiverAccount) {
+//		this.receiverAccount = receiverAccount;
+//	}
 
 	public long getOrderItemID() {
 		return orderItemID;

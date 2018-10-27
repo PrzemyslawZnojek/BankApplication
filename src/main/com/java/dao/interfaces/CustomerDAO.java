@@ -10,12 +10,11 @@ import main.com.java.entity.Customer;
 
 public interface CustomerDAO {
 
-	public List<Customer> getCustomerList();
-	public Customer getCustomerById(int id); // can remove this probably.. cuz of duplicate with getCustomer
-	public void addCustomer(Customer theCustomer);
-	public void updateCustomer(Customer theCustomer);
-	public Session createCurrentSession(SessionFactory sf);
-	public Customer getCustomer(long theId);
-	public void deleteCustomer(long theId);
-	public List<Customer> searchCustomers(String theSearchName);
+	List<Customer> getCustomerList();
+	Customer getCustomerById(long id);
+	void addCustomer(Customer theCustomer);
+	void updateCustomer(Customer theCustomer);
+	Session createCurrentSession(SessionFactory sf);
+	void deleteCustomer(long theId);
+	List<Customer> searchCustomers(String theSearchName);
 }
