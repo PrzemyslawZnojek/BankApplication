@@ -30,7 +30,8 @@ public class UsersDAOImpl implements UsersDAO {
     public void addUsers(Users theUsers) {
         try {
             Session currentSession = sessionFactory.getCurrentSession();
-            currentSession.save(theUsers);
+            currentSession.saveOrUpdate(theUsers);
+            currentSession.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -52,7 +52,16 @@ public class CustomerDAOImpl implements CustomerDAO{
 	@Override
 	public void updateCustomer(Customer theCustomer) {
 		try {
-			createCurrentSession(sessionFactory).update(theCustomer);
+			Session currentSession = createCurrentSession(sessionFactory);
+			Query theQuery = currentSession.createQuery("from Customer where id=:customerID");
+			theQuery.setParameter("customerID", theCustomer.getCustomerID());
+
+			Customer customer = (Customer)theQuery.list().get(0);
+			customer.setFirstName(theCustomer.getFirstName());
+			customer.setLastName(theCustomer.getLastName());
+			customer.setCountry(theCustomer.getCountry());
+
+			currentSession.update(customer);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -82,29 +91,16 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
     public List<Customer> searchCustomers(String theSearchName) {
-        
-        Query theQuery = null;
-        
-        //
-        // only search by name if theSearchName is not empty
-        //
-        if (theSearchName != null && theSearchName.trim().length() > 0) {
+		Query theQuery = null;
 
-            // search for firstName or lastName ... case insensitive
+		if (theSearchName != null && theSearchName.trim().length() > 0) {
             theQuery =createCurrentSession(sessionFactory).createQuery("from Customer where lower(firstName) like :theName or lower(lastName) like :theName", Customer.class);
             theQuery.setParameter("theName", "%" + theSearchName.toLowerCase() + "%");
-
-        }
-        else {
-            // theSearchName is empty ... so just get all customers
+        }else {
             theQuery =createCurrentSession(sessionFactory).createQuery("from Customer", Customer.class);            
         }
-        
-        // execute query and get result list
-        List<Customer> customers = theQuery.getResultList();
-                
-        // return the results        
-        return customers;
+
+        return theQuery.getResultList();
         
     }
 

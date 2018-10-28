@@ -89,6 +89,16 @@ public class AccountController {
 
 	}
 
+	@PostMapping("/saveCustomer")
+	public String saveCustomer(@ModelAttribute("customer") Customer theCustomer) {
+		long customerID = theCustomer.getCustomerID();
+		// save the customer using our service
+		customerService.updateCustomer(theCustomer);
+
+		return "redirect:/customer/list";
+	}
+
+
 	@GetMapping("/delete")
 	public String deleteCustomer(@RequestParam("customerID") long theId) {
 
