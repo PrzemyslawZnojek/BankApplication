@@ -31,7 +31,7 @@ public class UsersDAOImpl implements UsersDAO {
         try {
             Session currentSession = sessionFactory.getCurrentSession();
             currentSession.saveOrUpdate(theUsers);
-            currentSession.clear();
+           // currentSession.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }

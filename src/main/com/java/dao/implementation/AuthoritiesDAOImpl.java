@@ -29,7 +29,7 @@ public class AuthoritiesDAOImpl implements AuthoritiesDAO {
         try{
             Session currentSession = createCurrentSession(sessionFactory);
             currentSession.saveOrUpdate(authorities);
-            currentSession.clear();
+            //currentSession.clear();
         }catch (Exception e){
             e.printStackTrace();
         }
