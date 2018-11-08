@@ -1,4 +1,4 @@
-package main.com.java.service.business.encription;
+package main.com.java.service.business.encription.password;
 // Copyright (c) 2006 Damien Miller <djm@mindrot.org>
 //
 // Permission to use, copy, modify, and distribute this software for any

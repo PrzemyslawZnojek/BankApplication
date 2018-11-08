@@ -2,6 +2,7 @@ package main.com.java.dao.implementation;
 
 import java.util.List;
 
+import main.com.java.service.business.encription.accountNumber.AccountNumberEncryptor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -103,18 +104,24 @@ public class OrderItemDAOImpl implements OrderItemDAO{
 	}
 
 	@Override
-	public void saveTransfer(OrderItem theOrderItem, Account account, String Send, String Rec, long amount) {
+	public void saveTransfer(OrderItem theOrderItem, Account account, String accountNumberSender, String accountNumberReciver, long amount) {
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		theOrderItem.setAccountNumberSender(Send);
+		String encryptedAccountNumberSender = AccountNumberEncryptor.getSha256(accountNumberSender);
+		String encryptedAccountNumberReciver = AccountNumberEncryptor.getSha256(accountNumberReciver);
 
-		String dbQuery = "UPDATE Account SET balance = balance - :amount where accountNumber= :Send";
-		Query q1 =  currentSession.createQuery(dbQuery).setParameter("Send", Send).setParameter("amount", amount);
+		theOrderItem.setAccountNumberSender(encryptedAccountNumberSender);
 
-		String dbQuery2 = "UPDATE Account SET balance = balance + :amount1 where accountNumber= :Rec";
-		Query q2 =  currentSession.createQuery(dbQuery2).setParameter("Rec", Rec).setParameter("amount1", amount);
+		String dbQuery = "UPDATE Account SET balance = balance - :amount where accountNumber= :accountNumberSender";
+		Query q1 =  currentSession.createQuery(dbQuery).setParameter("accountNumberSender", encryptedAccountNumberSender).setParameter("amount", amount);
+
+		String dbQuery2 = "UPDATE Account SET balance = balance + :amount1 where accountNumber= :accountNumberReciver";
+		Query q2 =  currentSession.createQuery(dbQuery2).setParameter("accountNumberReciver", encryptedAccountNumberReciver).setParameter("amount1", amount);
+
 		int result = q1.executeUpdate();
 		int result2 = q2.executeUpdate();
+
+		theOrderItem.setAccountNumberReceiver(encryptedAccountNumberReciver);
 
 		currentSession.save(theOrderItem);
 		

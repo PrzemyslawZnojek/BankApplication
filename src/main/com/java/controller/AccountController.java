@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import main.com.java.service.business.generators.AccountNumberGenerator;
-import main.com.java.service.business.generators.PasswordGenerator;
+import main.com.java.service.business.encription.password.PasswordEncryption;
 import main.com.java.service.domain.interfaces.AccountService;
 import main.com.java.service.domain.interfaces.CustomerService;
 import main.com.java.service.domain.interfaces.UsersService;
@@ -25,16 +25,16 @@ public class AccountController {
 	private AccountService accountService;
     private CustomerService customerService;
     private UsersService usersService;
-    private PasswordGenerator passwordGenerator;
+    private PasswordEncryption passwordEncryption;
     private AccountNumberGenerator accountNumberGenerator;
     private AuthoritiesService authoritiesService;
 
     @Autowired
-	public AccountController(AccountService accountService, CustomerService customerService, UsersService usersService, PasswordGenerator passwordGenerator, AccountNumberGenerator accountNumberGenerator, AuthoritiesService authoritiesService) {
+	public AccountController(AccountService accountService, CustomerService customerService, UsersService usersService, PasswordEncryption passwordEncryption, AccountNumberGenerator accountNumberGenerator, AuthoritiesService authoritiesService) {
 		this.accountService = accountService;
 		this.customerService = customerService;
 		this.usersService = usersService;
-		this.passwordGenerator = passwordGenerator;
+		this.passwordEncryption = passwordEncryption;
 		this.accountNumberGenerator = accountNumberGenerator;
 		this.authoritiesService = authoritiesService;
 	}
@@ -58,25 +58,21 @@ public class AccountController {
 	}
 
 	@PostMapping("/saveAccount")
-	public String saveAccount(@ModelAttribute("registerObject") RegisterObject registerObject, Model theModel) {
+	public String saveAccount(@ModelAttribute("registerObject") RegisterObject registerObject) {
 		RegisterObjectService registerObjectService = new RegisterObjectService.RegisterObjectBuilder()
 				.usersService(usersService)
 				.customerService(customerService)
 				.accountService(accountService)
 				.authoritiesService(authoritiesService)
 				.accountNumberGenerator(accountNumberGenerator)
-				.passwordGenerator(passwordGenerator)
+				.passwordGenerator(passwordEncryption)
 				.registerObject(registerObject)
 				.build();
 
 		registerObjectService.insertIntoThreeTablesByOneSubmit();
 
-		Users user = usersService.getOneUser("john");
-		theModel.addAttribute("username", user.getUsername());
-		theModel.addAttribute("password", user.getPassword());
+		return "redirect:/customer/list";
 
-
-		return "showPasswordForUser";
 	}
 
 	@GetMapping("/showFormForUpdate")

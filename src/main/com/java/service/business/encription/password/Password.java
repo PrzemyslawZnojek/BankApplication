@@ -1,4 +1,6 @@
-package main.com.java.service.business.encription;
+package main.com.java.service.business.encription.password;
+
+import main.com.java.service.business.encription.password.BCryptEncryptor;
 
 /**
  * Author: Ian Gallagher <igallagher@securityinnovation.com>

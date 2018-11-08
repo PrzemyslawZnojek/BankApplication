@@ -67,6 +67,11 @@
                 </tr>
 
                 <tr>
+                    <td><label>Password:</label></td>
+                    <td><form:password path="users.password"/></td>
+                </tr>
+
+                <tr>
                     <td><label>First name:</label></td>
                     <td><form:input path="customer.firstName"/></td>
                 </tr>

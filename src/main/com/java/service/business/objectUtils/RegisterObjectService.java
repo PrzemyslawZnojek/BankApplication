@@ -1,8 +1,9 @@
 package main.com.java.service.business.objectUtils;
 
 import main.com.java.entity.RegisterObject;
+import main.com.java.service.business.encription.accountNumber.AccountNumberEncryptor;
 import main.com.java.service.business.generators.AccountNumberGenerator;
-import main.com.java.service.business.generators.PasswordGenerator;
+import main.com.java.service.business.encription.password.PasswordEncryption;
 import main.com.java.service.domain.interfaces.AccountService;
 import main.com.java.service.domain.interfaces.AuthoritiesService;
 import main.com.java.service.domain.interfaces.CustomerService;
@@ -17,17 +18,17 @@ public class RegisterObjectService {
     private CustomerService customerService;
     private UsersService usersService;
     private AuthoritiesService authoritiesService;
-    private PasswordGenerator passwordGenerator;
+    private PasswordEncryption passwordEncryption;
     private AccountNumberGenerator accountNumberGenerator;
     private RegisterObject registerObject;
 
     @Autowired
-    public RegisterObjectService(AccountService accountService, CustomerService customerService, UsersService usersService, AuthoritiesService authoritiesService, PasswordGenerator passwordGenerator, AccountNumberGenerator accountNumberGenerator) {
+    public RegisterObjectService(AccountService accountService, CustomerService customerService, UsersService usersService, AuthoritiesService authoritiesService, PasswordEncryption passwordEncryption, AccountNumberGenerator accountNumberGenerator) {
         this.accountService = accountService;
         this.customerService = customerService;
         this.usersService = usersService;
         this.authoritiesService = authoritiesService;
-        this.passwordGenerator = passwordGenerator;
+        this.passwordEncryption = passwordEncryption;
         this.accountNumberGenerator = accountNumberGenerator;
     }
 
@@ -36,52 +37,56 @@ public class RegisterObjectService {
         this.customerService = registerObjectBuilder.customerService;
         this.usersService = registerObjectBuilder.usersService;
         this.authoritiesService = registerObjectBuilder.authoritiesService;
-        this.passwordGenerator = registerObjectBuilder.passwordGenerator;
+        this.passwordEncryption = registerObjectBuilder.passwordEncryption;
         this.accountNumberGenerator = registerObjectBuilder.accountNumberGenerator;
         this.registerObject = registerObjectBuilder.registerObject;
     }
 
-    public void insertIntoThreeTablesByOneSubmit(){
+    public void insertIntoThreeTablesByOneSubmit() {
         addAccount();
         addUser();
         addCustomer();
         addAuthorities();
     }
 
-    private void addAccount(){
+    private void addAccount() {
         updateAccountObject();
         accountService.addAccount(registerObject.getAccount());
     }
 
-    private void addUser(){
+    private void addUser() {
         updateUserObject();
         usersService.addUser(registerObject.getUsers());
     }
 
-    private void addCustomer(){
+    private void addCustomer() {
         updateCustomerObject();
         customerService.addCustomer(registerObject.getCustomer());
     }
 
-    private void addAuthorities(){
+    private void addAuthorities() {
         updateAuthorities();
         authoritiesService.addAuthorities(registerObject.getAuthorities());
     }
 
-    private void updateAccountObject(){
-        registerObject.getAccount().setAccountNumber(accountNumberGenerator.generateAccountNumber());
+    private void updateAccountObject() {
+        registerObject.getAccount().setAccountNumber(
+                AccountNumberEncryptor.getSha256(accountNumberGenerator.generateAccountNumber())
+        );
     }
 
-    private void updateCustomerObject(){
+    private void updateCustomerObject() {
         registerObject.getCustomer().setIdOfAccount(registerObject.getAccount().getAccountID());
     }
 
-    private void updateUserObject(){
-        registerObject.getUsers().setPassword(passwordGenerator.returnPasswordWithEncryption());
+    private void updateUserObject() {
+        registerObject.getUsers().setPassword(
+                PasswordEncryption.returnPasswordWithEncryption(registerObject.getUsers().getPassword())
+        );
         registerObject.getUsers().setUsername(registerObject.getAccount().getUsername());
     }
 
-    private void updateAuthorities(){
+    private void updateAuthorities() {
         registerObject.getAuthorities().setUsername(registerObject.getAccount().getUsername());
     }
 
@@ -91,48 +96,51 @@ public class RegisterObjectService {
         private CustomerService customerService;
         private UsersService usersService;
         private AuthoritiesService authoritiesService;
-        private PasswordGenerator passwordGenerator;
+        private PasswordEncryption passwordEncryption;
         private AccountNumberGenerator accountNumberGenerator;
         private RegisterObject registerObject;
 
-        public RegisterObjectBuilder(){};
+        public RegisterObjectBuilder() {
+        }
 
-        public RegisterObjectBuilder accountService(AccountService accountService){
+        ;
+
+        public RegisterObjectBuilder accountService(AccountService accountService) {
             this.accountService = accountService;
             return this;
         }
 
-        public RegisterObjectBuilder customerService(CustomerService customerService){
+        public RegisterObjectBuilder customerService(CustomerService customerService) {
             this.customerService = customerService;
             return this;
         }
 
-        public RegisterObjectBuilder usersService(UsersService usersService){
+        public RegisterObjectBuilder usersService(UsersService usersService) {
             this.usersService = usersService;
             return this;
         }
 
-        public RegisterObjectBuilder authoritiesService(AuthoritiesService authoritiesService){
+        public RegisterObjectBuilder authoritiesService(AuthoritiesService authoritiesService) {
             this.authoritiesService = authoritiesService;
             return this;
         }
 
-        public RegisterObjectBuilder passwordGenerator(PasswordGenerator passwordGenerator){
-            this.passwordGenerator = passwordGenerator;
+        public RegisterObjectBuilder passwordGenerator(PasswordEncryption passwordEncryption) {
+            this.passwordEncryption = passwordEncryption;
             return this;
         }
 
-        public RegisterObjectBuilder accountNumberGenerator(AccountNumberGenerator accountNumberGenerator){
+        public RegisterObjectBuilder accountNumberGenerator(AccountNumberGenerator accountNumberGenerator) {
             this.accountNumberGenerator = accountNumberGenerator;
             return this;
         }
 
-        public RegisterObjectBuilder registerObject(RegisterObject registerObject){
+        public RegisterObjectBuilder registerObject(RegisterObject registerObject) {
             this.registerObject = registerObject;
             return this;
         }
 
-        public RegisterObjectService build(){
+        public RegisterObjectService build() {
             return new RegisterObjectService(this);
         }
 
