@@ -17,9 +17,9 @@ VALUES
 
 INSERT INTO `bank_application`.`users` 
 VALUES 
-('john','{bcrypt}$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K',1),
-('mary','{bcrypt}$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K',1),
-('susan','{bcrypt}$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K',1);
+('john','{bcrypt}$2a$04$aXW2Sb01tRuTvrhfc5Stx.pHew9comkRDbZuPEkNw16cab3wXDRvq',1),
+('mary','{bcrypt}$2a$04$aXW2Sb01tRuTvrhfc5Stx.pHew9comkRDbZuPEkNw16cab3wXDRvq',1),
+('susan','{bcrypt}$2a$04$aXW2Sb01tRuTvrhfc5Stx.pHew9comkRDbZuPEkNw16cab3wXDRvq',1);
 
 --
 -- Dumping data for table `authorities`
