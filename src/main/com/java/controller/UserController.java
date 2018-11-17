@@ -58,7 +58,7 @@ public class UserController {
         String loggedUser = getLoggedUsername();
         String loggedUserAccountNumber = accountService.getAccountByUsername(loggedUser).getAccountNumber();
         orderItemService.saveTransfer(theOrderItem, account, loggedUserAccountNumber, Rec, amount);
-        logger.info("Transfer made from " + Rec + " " + amount);
+        logger.info("Transfer made from account:" + Rec + " with amount:" + amount);
         return "redirect:/user/panel";
     }
 
