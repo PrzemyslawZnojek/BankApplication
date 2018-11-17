@@ -1,5 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="org.apache.log4j.Logger"%>
+<%@ page import="main.com.java.security.config.SecurityConfig" %>
 
 <!doctype html>
 <html lang="en">
@@ -76,7 +78,7 @@
 
             <!-- Login Form -->
             <form:form action="${pageContext.request.contextPath}/authenticateTheUser"
-                       method="POST" class="form-horizontal">
+                       method="POST" class="form-horizontal" enctype="application/x-www-form-urlencoded">
 
                 <!-- Place for messages: error, alert etc ... -->
                 <div class="form-group">
@@ -86,7 +88,8 @@
                             <!-- Check for login error -->
 
                             <c:if test="${param.error != null}">
-
+                                <%! static Logger logger = Logger.getLogger(SecurityConfig.class); %>
+                                <% logger.fatal("Authentication failed " + request.getParameter("username")); %>
                                 <div class="alert alert-danger">
                                     Invalid username or password.
                                 </div>

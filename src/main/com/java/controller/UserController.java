@@ -7,6 +7,7 @@ import main.com.java.service.business.objectUtils.OrderItemFilter;
 import main.com.java.service.business.objectUtils.UserRecognizer;
 import main.com.java.service.domain.interfaces.AccountService;
 import main.com.java.service.domain.interfaces.UsersService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +28,7 @@ import main.com.java.service.domain.interfaces.OrderItemService;
 @RequestMapping("/user")
 public class UserController {
 
+    private Logger logger = Logger.getLogger(UserController.class);
     private OrderItemService orderItemService;
     private UsersService usersService;
     private AccountService accountService;
@@ -56,6 +58,7 @@ public class UserController {
         String loggedUser = getLoggedUsername();
         String loggedUserAccountNumber = accountService.getAccountByUsername(loggedUser).getAccountNumber();
         orderItemService.saveTransfer(theOrderItem, account, loggedUserAccountNumber, Rec, amount);
+        logger.info("Transfer made from " + Rec + " " + amount);
         return "redirect:/user/panel";
     }
 

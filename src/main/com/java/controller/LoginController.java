@@ -30,7 +30,5 @@ public class LoginController {
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/customer/list"));
 		}
 	}
-
-
 	
 }
