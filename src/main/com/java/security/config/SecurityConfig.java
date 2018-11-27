@@ -1,6 +1,5 @@
 package main.com.java.security.config;
 
-
 import java.beans.PropertyVetoException;
 
 import javax.sql.DataSource;
@@ -29,9 +28,9 @@ public class SecurityConfig
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
-			auth.jdbcAuthentication().dataSource(securityDataSource);
-	
+
+        auth.jdbcAuthentication().dataSource(securityDataSource);
+
 	}
 
 	@Override

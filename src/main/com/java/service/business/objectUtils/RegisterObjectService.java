@@ -1,6 +1,7 @@
 package main.com.java.service.business.objectUtils;
 
 import main.com.java.entity.RegisterObject;
+import main.com.java.service.business.encription.accountNumber.AESAlgorithmUtils;
 import main.com.java.service.business.encription.accountNumber.AccountNumberEncryptor;
 import main.com.java.service.business.generators.AccountNumberGenerator;
 import main.com.java.service.business.encription.password.PasswordEncryption;
@@ -70,8 +71,9 @@ public class RegisterObjectService {
     }
 
     private void updateAccountObject() {
+        String generatedAccountNumber = accountNumberGenerator.generateAccountNumber();
         registerObject.getAccount().setAccountNumber(
-                AccountNumberEncryptor.getSha256(accountNumberGenerator.generateAccountNumber())
+                AESAlgorithmUtils.encryptWithAES(registerObject.getUsers().getPassword(), generatedAccountNumber)
         );
     }
 
